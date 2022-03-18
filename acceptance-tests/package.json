@@ -1,0 +1,25 @@
+{
+  "name": "trash-pickup-hobby-acceptance-tests",
+  "version": "0.0.1",
+  "description": "Acceptance tests for the trash pickup hobby website",
+  "main": "mocha",
+  "scripts": {
+    "test": "mocha ./tests"
+  },
+  "keywords": [
+    "Trash",
+    "pickup",
+    "hobby",
+    "website",
+    "acceptance",
+    "tests"
+  ],
+  "author": "Andrew Allbright",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^9.2.2",
+    "mochawesome": "^7.1.2",
+    "puppeteer": "^13.5.1",
+    "should": "^13.2.3"
+  }
+}
