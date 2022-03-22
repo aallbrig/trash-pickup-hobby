@@ -1,12 +1,12 @@
 const assert = require("assert");
 const puppeteer = require("puppeteer");
 const HEADLESS_MODE = process.env.HEADLESS_MODE || false;
-const LANDING_PAGE = process.env.LANDING_PAGE || "http://localhost:8000";
+const GAME_URL = process.env.GAME_URL || "http://localhost:8000/trash-pickup-game";
 
 let browser;
 let page;
 
-describe("The landing page for the trash pickup hobby website", () => {
+describe("A page for a fun video game", () => {
   before(async () => {
     browser = await puppeteer.launch({
       headless: HEADLESS_MODE,
@@ -19,8 +19,8 @@ describe("The landing page for the trash pickup hobby website", () => {
   });
 
   it("Should exist", async () => {
-    await page.goto(LANDING_PAGE);
+    await page.goto(GAME_URL);
     let title = await page.title();
-    assert.equal(title, "Trash Pickup Hobby");
+    assert.equal(title, "");
   });
 });
