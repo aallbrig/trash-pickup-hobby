@@ -1,3 +1,4 @@
+using System;
 using Behaviors;
 using Generated;
 using UnityEngine;
@@ -42,8 +43,8 @@ namespace Controllers
         }
         private void DetectTapOnTrash(InteractionData data)
         {
-            var screenPointToRay = mainCamera.ScreenPointToRay(new Vector3(data.ScreenPosition.x, data.ScreenPosition.y, mainCamera.nearClipPlane));
-            if (Physics.Raycast(screenPointToRay, out var hit, 1000f))
+            var screenPointToRay = mainCamera.ScreenPointToRay(data.ScreenPosition);
+            if (Physics.Raycast(screenPointToRay, out var hit, 100f))
             {
                 var trash = hit.collider.transform.GetComponent<Trash>();
                 if (trash)
@@ -56,7 +57,7 @@ namespace Controllers
         }
         private void InteractionStarted(InputAction.CallbackContext ctx)
         {
-            pointerEndScreenInput = _controls.Gameplay.Position.ReadValue<Vector2>();
+            pointerBeginScreenInput = _controls.Gameplay.Position.ReadValue<Vector2>();
             InteractStartEvent?.Invoke(new InteractionData{ ScreenPosition = pointerBeginScreenInput, Timing = Time.time });
         }
         private void InteractionStopped(InputAction.CallbackContext ctx)
@@ -64,5 +65,16 @@ namespace Controllers
             pointerEndScreenInput = _controls.Gameplay.Position.ReadValue<Vector2>();
             InteractEndEvent?.Invoke(new InteractionData{ ScreenPosition = pointerEndScreenInput, Timing = Time.time });
         }
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+                Gizmos.color = Color.green;
+                var startRay = mainCamera.ScreenPointToRay(pointerBeginScreenInput);
+                Gizmos.DrawRay(startRay.origin, startRay.direction * 100f);
+                Gizmos.color = Color.blue;
+                var endRay = mainCamera.ScreenPointToRay(pointerEndScreenInput);
+                Gizmos.DrawRay(endRay.origin, endRay.direction * 100f);
+        }
+#endif
     }
 }

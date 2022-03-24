@@ -15,8 +15,9 @@ namespace Tests.PlayMode.Controllers
         {
             InputSystem.AddDevice<Touchscreen>();
             var pointer = InputSystem.AddDevice<Pointer>();
-            var testCamera = new GameObject { transform = { position = new Vector3(0, 1, -10) } }.AddComponent<Camera>();
-            var testTrash = new GameObject { transform = { position = new Vector3(0,0,0)}}.AddComponent<Trash>();
+            var testCamera = new GameObject { transform = { position = new Vector3(10, 1, -10) } }.AddComponent<Camera>();
+            var testTrash = new GameObject { transform = { position = new Vector3(10,0,0)}}.AddComponent<Trash>();
+            testTrash.transform.GetComponent<Rigidbody>().useGravity = false;
             var sut = new GameObject().AddComponent<PlayerController>();
             sut.mainCamera = testCamera;
             var eventCalled = false;
