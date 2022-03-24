@@ -1,39 +1,33 @@
 using System.Collections.Generic;
 using System.Linq;
+using Models;
 using UnityEngine;
 
 namespace Behaviors {
-    public delegate void TrashbagTrashAdded();
+    public delegate void TrashbagTrashAdded(ITrash trash);
     public delegate void TrashbagFilledFull();
-    public delegate void TrashbagEmptied();
+    public delegate void TrashbagEmptied(List<ITrash> emptiedTrash);
 
-    public interface ITrash
-    {
-        float WeightAddInGallons { get; }
-    }
     public class Trashbag : MonoBehaviour
     {
-        public event TrashbagTrashAdded TrashbagAddEvent;
+        public event TrashbagTrashAdded TrashAddEvent;
         public event TrashbagFilledFull TrashbagFullEvent;
         public event TrashbagEmptied TrashbagEmptyEvent;
         public float trashbagCapacityInGallons = 25.0f;
 
-        private float _trashbagCurrentCapacity => _trash.Count == 0 ? 0f : 
-            _trash.Select(trash => trash.WeightAddInGallons).Aggregate((sum, next) => sum + next);
-        private readonly List<ITrash> _trash = new();
-        private void Start()
-        {
-            ResetTrashbag();
-        }
+        private float _trashbagCurrentCapacity => _currentTrash.Count == 0 ? 0f : 
+            _currentTrash.Select(trash => trash.WeightAddInGallons).Aggregate((sum, next) => sum + next);
+        private readonly List<ITrash> _currentTrash = new();
         private void ResetTrashbag()
         {
-            _trash.Clear();
-            TrashbagEmptyEvent?.Invoke();
+            var trashCopy = _currentTrash.Select(_ => _).ToList();
+            TrashbagEmptyEvent?.Invoke(trashCopy);
+            _currentTrash.Clear();
         }
         public void Add(ITrash trash)
         {
-            TrashbagAddEvent?.Invoke();
-            _trash.Add(trash);
+            _currentTrash.Add(trash);
+            TrashAddEvent?.Invoke(trash);
             if (_trashbagCurrentCapacity >= trashbagCapacityInGallons)
                 TrashbagFullEvent?.Invoke();
         }

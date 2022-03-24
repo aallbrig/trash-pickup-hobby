@@ -1,5 +1,6 @@
 using System.Collections;
 using Behaviors;
+using Models;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -11,6 +12,7 @@ namespace Tests.PlayMode.Behaviors
         public class TestTrash:ITrash
         {
             public float WeightAddInGallons => 25.0f;
+            public float Score => 1.0f;
         }
 
         [UnityTest]
@@ -18,7 +20,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var sut = new GameObject().AddComponent<Trashbag>();
             var eventCalled = false;
-            sut.TrashbagAddEvent += () => eventCalled = true;
+            sut.TrashAddEvent += _ => eventCalled = true;
             yield return null;
 
             sut.Add(new TestTrash());
@@ -44,7 +46,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var sut = new GameObject().AddComponent<Trashbag>();
             var eventCalled = false;
-            sut.TrashbagAddEvent += () => eventCalled = true;
+            sut.TrashbagEmptyEvent += _ => eventCalled = true;
             yield return null;
 
             sut.Add(new TestTrash());

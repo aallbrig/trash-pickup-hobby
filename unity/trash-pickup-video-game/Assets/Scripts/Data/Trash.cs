@@ -1,4 +1,5 @@
 using Behaviors;
+using Models;
 using UnityEngine;
 
 namespace Data
@@ -7,7 +8,9 @@ namespace Data
     public class Trash : ScriptableObject, ITrash
     {
         public float weightInGallons = 1.0f;
+        public float score = 1.0f;
 
         public float WeightAddInGallons => weightInGallons;
+        public float Score => score;
     }
 }

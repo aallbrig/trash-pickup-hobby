@@ -21,7 +21,7 @@ namespace Tests.PlayMode.Controllers
             var sut = new GameObject().AddComponent<PlayerController>();
             sut.mainCamera = testCamera;
             var eventCalled = false;
-            sut.PlayerTrashPickupEvent += _ => eventCalled = true;
+            PlayerController.PlayerTrashPickupEvent += _ => eventCalled = true;
             yield return new WaitForFixedUpdate();
 
             // Player uses pointer to tap on screen, causing raycast to see the test trash
