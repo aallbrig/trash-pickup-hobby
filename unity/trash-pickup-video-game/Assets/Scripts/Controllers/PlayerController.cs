@@ -33,6 +33,7 @@ namespace Controllers
             mainCamera ??= Camera.main;
 
             trashBag ??= FindObjectOfType<Trashbag>();
+            trashBag ??= new GameObject().AddComponent<Trashbag>();
 
             _controls.Gameplay.Interact.started += InteractionStarted;
             _controls.Gameplay.Interact.canceled += InteractionStopped;
