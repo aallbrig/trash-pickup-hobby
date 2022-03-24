@@ -25,3 +25,4 @@ jobs:
           branch: github-pages
           folder: src
           target-folder: docs
+          clean: false
