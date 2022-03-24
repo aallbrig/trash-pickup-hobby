@@ -22,7 +22,7 @@ namespace Tests.PlayMode.Controllers
             sut.mainCamera = testCamera;
             var eventCalled = false;
             sut.PlayerTrashPickupEvent += _ => eventCalled = true;
-            yield return null;
+            yield return new WaitForFixedUpdate();
 
             // Player uses pointer to tap on screen, causing raycast to see the test trash
             var worldSpaceToScreen = testCamera.WorldToScreenPoint(testTrash.transform.position);

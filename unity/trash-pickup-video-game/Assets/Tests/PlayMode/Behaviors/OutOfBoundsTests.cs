@@ -16,8 +16,7 @@ namespace Tests.PlayMode.Behaviors
             var eventCalled = false;
             sut.BoundaryViolationEvent += () => eventCalled = true;
             testTrash.GetComponent<Transform>().position = sut.GetComponent<Transform>().position;
-            yield return null;
-            yield return null;
+            yield return new WaitForFixedUpdate();
 
             Assert.IsTrue(eventCalled);
         }
