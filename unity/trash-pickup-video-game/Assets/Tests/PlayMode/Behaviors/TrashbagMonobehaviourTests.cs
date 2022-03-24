@@ -1,9 +1,10 @@
 using System.Collections;
+using Behaviors;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests.PlayMode
+namespace Tests.PlayMode.Behaviors
 {
     public class TrashbagMonobehaviourTests
     {
