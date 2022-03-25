@@ -1,5 +1,6 @@
 <linker>
   <assembly fullname="Scripts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Behaviors.OutOfBounds" preserve="all" />
     <type fullname="Behaviors.Trash" preserve="all" />
     <type fullname="Behaviors.Trashbag" preserve="all" />
     <type fullname="Behaviors.UserScore" preserve="all" />

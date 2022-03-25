@@ -5,9 +5,9 @@ var config = {
     frameworkUrl: "Build/WebGL.framework.js",
     codeUrl: "Build/WebGL.wasm",
     streamingAssetsUrl: "StreamingAssets",
-    companyName: "DefaultCompany",
-    productName: "trash-pickup-video-game",
-    productVersion: "0.0.29",
+    companyName: "Andrew Allbright",
+    productName: "Trash Pickup Video Game",
+    productVersion: "0.0.30",
     devicePixelRatio: 1,
 }
 
