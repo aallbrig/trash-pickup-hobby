@@ -7,7 +7,7 @@ var config = {
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "trash-pickup-video-game",
-    productVersion: "0.0.28",
+    productVersion: "0.0.29",
     devicePixelRatio: 1,
 }
 
