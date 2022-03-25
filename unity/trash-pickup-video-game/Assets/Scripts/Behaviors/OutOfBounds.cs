@@ -8,11 +8,12 @@ namespace Behaviors
     public class OutOfBounds : MonoBehaviour
     {
         public event BoundaryViolation BoundaryViolationEvent;
-        public BoxCollider collider;
+        public BoxCollider boxCollider;
 
         private void Start()
         {
-            collider ??= GetComponent<BoxCollider>();
+            boxCollider ??= GetComponent<BoxCollider>();
+            
         }
         private void OnCollisionEnter(Collision collision)
         {
@@ -27,7 +28,7 @@ namespace Behaviors
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position, collider.size);
+            Gizmos.DrawWireCube(transform.position, boxCollider.size);
         }
 #endif
     }

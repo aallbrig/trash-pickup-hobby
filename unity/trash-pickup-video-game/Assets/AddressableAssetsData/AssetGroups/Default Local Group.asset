@@ -41,10 +41,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/User Interface.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: eede823d9fa4848cc9d6082b57a34203
-    m_Address: Assets/Prefabs/Trashbag.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 56f47b01e217c4bc183bed38c7653a0d, type: 2}
   m_SchemaSet:
