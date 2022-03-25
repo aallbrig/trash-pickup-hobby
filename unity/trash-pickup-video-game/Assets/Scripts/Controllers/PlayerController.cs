@@ -53,11 +53,6 @@ namespace Controllers
                     PlayerTrashPickupEvent?.Invoke(trash.trashData);
                     trash.Reset();
                 }
-                var trashbagElement = hit.collider.transform.GetComponent<Trashbag>();
-                if (trashbagElement)
-                {
-                    trashbagElement.Empty();
-                }
             }
         }
         private void InteractionStarted(InputAction.CallbackContext ctx)
