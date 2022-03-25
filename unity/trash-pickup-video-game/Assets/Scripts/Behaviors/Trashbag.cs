@@ -17,7 +17,7 @@ namespace Behaviors {
 
         private float _trashbagCurrentCapacity => _currentTrash.Count == 0 ? 0f : 
             _currentTrash.Select(trash => trash.WeightAddInGallons).Aggregate((sum, next) => sum + next);
-        private readonly List<ITrash> _currentTrash = new();
+        private readonly List<ITrash> _currentTrash = new List<ITrash>();
         private void ResetTrashbag()
         {
             var trashCopy = _currentTrash.Select(_ => _).ToList();

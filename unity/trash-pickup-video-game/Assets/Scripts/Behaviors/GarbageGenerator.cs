@@ -10,7 +10,7 @@ namespace Behaviors
     // 😡 Curses to the apathy (or whatever it is) that lead people to litter
     public class GarbageGenerator : MonoBehaviour
     {
-        public List<GameObject> trashPrefabs = new();
+        public List<GameObject> trashPrefabs = new List<GameObject>();
         [Range(0.1f, 2.0f)]
         public float minimumSpawnTimeInSeconds = 0.25f;
         [Range(0.1f, 2.0f)]
@@ -18,7 +18,7 @@ namespace Behaviors
 
         private Coroutine _coroutine;
         private int _poolSize = 10;
-        private Dictionary<GameObject, List<Transform>> _objectPool = new(); // 💦
+        private Dictionary<GameObject, List<Transform>> _objectPool = new Dictionary<GameObject, List<Transform>>(); // 💦
 
         private GameObject RandomTrashPrefab() => trashPrefabs.Count > 0 ? trashPrefabs[Random.Range(0, trashPrefabs.Count)] : null;
 
