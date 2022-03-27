@@ -7,9 +7,11 @@ using Random = UnityEngine.Random;
 
 namespace Behaviors
 {
+    public delegate void GarbageGenerated();
     // 😡 Curses to the apathy (or whatever it is) that lead people to litter
     public class GarbageGenerator : MonoBehaviour
     {
+        public GarbageGenerated GarbageGeneratedEvent;
         public List<GameObject> trashPrefabs = new List<GameObject>();
         [Range(0.1f, 2.0f)]
         public float minimumSpawnTimeInSeconds = 0.25f;
@@ -25,12 +27,20 @@ namespace Behaviors
         private void SpawnTrash()
         {
             var trashPrefab = RandomTrashPrefab();
-            if (trashPrefab == null) return;
+            if (trashPrefab == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogWarning("A garbage generator does not have garbage prefabs to use!");
+#endif
+                return;
+            }
 
             var trash = GetFromObjectPool(trashPrefab);
             trash.position = new Vector3(Random.Range(-7.5f, 7.5f), transform.position.y, transform.position.z);
             var rigidBody = trash.GetComponent<Rigidbody>();
-            rigidBody.AddForce(new Vector3(0, Random.Range(10, 20), 0), ForceMode.VelocityChange);
+            if (rigidBody) rigidBody.AddForce(new Vector3(0, Random.Range(10, 20), 0), ForceMode.VelocityChange);
+
+            GarbageGeneratedEvent?.Invoke();
         }
         private Transform GetFromObjectPool(GameObject trashPrefab)
         {
@@ -48,10 +58,13 @@ namespace Behaviors
             }
         }
 
-        private void Awake()
+        private void Start()
         {
             FillObjectPool();
+            _coroutine = StartCoroutine(RepeatedlySpawnTrash());
         }
+
+        private void OnDestroy() => StopCoroutine(_coroutine);
 
         private void FillObjectPool()
         {
@@ -68,8 +81,6 @@ namespace Behaviors
                 }
             });
         }
-        private void OnEnable() => _coroutine = StartCoroutine(RepeatedlySpawnTrash());
-        private void OnDisable() => StopCoroutine(_coroutine);
 
     }
 }
