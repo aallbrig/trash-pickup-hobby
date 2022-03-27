@@ -18,7 +18,7 @@ namespace Controllers
     {
         public event InteractionStarted InteractStartEvent;
         public event InteractionEnded InteractEndEvent;
-        public static event PlayerTrashPickup PlayerTrashPickupEvent;
+        public event PlayerTrashPickup PlayerTrashPickupEvent;
         public int trashLayerMask = 8;
         public Camera mainCamera;
         public Trashbag trashBag;
