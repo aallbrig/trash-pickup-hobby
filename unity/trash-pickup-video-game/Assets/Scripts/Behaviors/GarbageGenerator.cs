@@ -15,6 +15,8 @@ namespace Behaviors
         [Range(0.1f, 2.0f)] public float minimumSpawnTimeInSeconds = 0.25f;
 
         [Range(0.1f, 2.0f)] public float maximumSpawnTimeInSeconds = 1.0f;
+        [Range(10f, 20f)] public float minimumUpwardVelocity = 10f;
+        [Range(10f, 20f)] public float maximumUpwardVelocity = 10f;
 
         private Coroutine _coroutine;
 
@@ -49,10 +51,11 @@ namespace Behaviors
             var trash = GetFromObjectPool(trashPrefab);
             trash.position = new Vector3(Random.Range(-7.5f, 7.5f), transform.position.y, transform.position.z);
             var rigidBody = trash.GetComponent<Rigidbody>();
-            if (rigidBody) rigidBody.AddForce(new Vector3(0, Random.Range(10, 20), 0), ForceMode.VelocityChange);
+            if (rigidBody) rigidBody.AddForce(new Vector3(0, RandomUpwardForce(), 0), ForceMode.VelocityChange);
 
             GarbageGeneratedEvent?.Invoke();
         }
+        private float RandomUpwardForce() => Random.Range(minimumUpwardVelocity, maximumUpwardVelocity);
         private Transform GetFromObjectPool(GameObject trashPrefab)
         {
             var possibleObjects = _objectPool[trashPrefab].Where(trash => trash.gameObject.activeSelf == false).ToList();
