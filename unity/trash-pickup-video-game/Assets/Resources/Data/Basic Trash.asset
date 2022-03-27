@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccc619bb79b4f8b9c6be19817ab368f, type: 3}
   m_Name: Basic Trash
   m_EditorClassIdentifier: 
-  weightInGallons: 1
+  weightInGallons: 3
+  score: 1

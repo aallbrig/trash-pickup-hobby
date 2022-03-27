@@ -12,7 +12,9 @@ namespace Tests.PlayMode.Behaviors
         public IEnumerator GarbageGeneratorGeneratesGarbage()
         {
             var eventCalled = false;
+            var camera = new GameObject().AddComponent<Camera>();
             var sut = new GameObject().AddComponent<GarbageGenerator>();
+            sut.camera = camera;
             sut.trashPrefabs.Add(new GameObject());
             sut.GarbageGeneratedEvent = _ => eventCalled = true;
             sut.minimumSpawnTimeInSeconds = 0.001f;
