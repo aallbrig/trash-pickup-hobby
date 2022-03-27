@@ -9,11 +9,6 @@ namespace Tests.PlayMode.Behaviors
 {
     public class UserScoreTests
     {
-        public class TestTrash:ITrash
-        {
-            public float WeightAddInGallons => 15.0f;
-            public float Score => 5.0f;
-        }
 
         [UnityTest]
         public IEnumerator UserScoreIncreasesWhenTrashIsAdded()
@@ -21,7 +16,7 @@ namespace Tests.PlayMode.Behaviors
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             var sut = new GameObject().AddComponent<UserScore>();
             yield return null;
-            
+
             testTrashbag.Add(new TestTrash());
 
             Assert.AreEqual(5.0f, sut.CurrentScore);
@@ -38,6 +33,13 @@ namespace Tests.PlayMode.Behaviors
             testTrashbag.Empty();
 
             Assert.AreEqual(5.0f + 5.0f, sut.CurrentScore);
+        }
+
+        public class TestTrash : ITrash
+        {
+            public float WeightAddInGallons => 15.0f;
+
+            public float Score => 5.0f;
         }
     }
 }

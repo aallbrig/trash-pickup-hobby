@@ -9,11 +9,6 @@ namespace Tests.PlayMode.Behaviors
 {
     public class TrashbagMonobehaviourTests
     {
-        public class TestTrash:ITrash
-        {
-            public float WeightAddInGallons => 25.0f;
-            public float Score => 1.0f;
-        }
 
         [UnityTest]
         public IEnumerator TrashbagCanGainTrash()
@@ -53,6 +48,13 @@ namespace Tests.PlayMode.Behaviors
             sut.Empty();
 
             Assert.IsTrue(eventCalled);
+        }
+
+        public class TestTrash : ITrash
+        {
+            public float WeightAddInGallons => 25.0f;
+
+            public float Score => 1.0f;
         }
     }
 }

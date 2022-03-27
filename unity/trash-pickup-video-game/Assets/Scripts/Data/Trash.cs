@@ -1,4 +1,3 @@
-using Behaviors;
 using Models;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ namespace Data
         public float score = 1.0f;
 
         public float WeightAddInGallons => weightInGallons;
+
         public float Score => score;
     }
 }

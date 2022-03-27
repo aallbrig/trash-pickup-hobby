@@ -3,21 +3,29 @@ using System.Linq;
 using Models;
 using UnityEngine;
 
-namespace Behaviors {
+namespace Behaviors
+{
     public delegate void TrashbagTrashAdded(ITrash trash);
+
     public delegate void TrashbagFilledFull();
+
     public delegate void TrashbagEmptied(List<ITrash> emptiedTrash);
 
     public class Trashbag : MonoBehaviour
     {
-        public event TrashbagTrashAdded TrashAddEvent;
-        public event TrashbagFilledFull TrashbagFullEvent;
-        public event TrashbagEmptied TrashbagEmptyEvent;
         public float trashbagCapacityInGallons = 25.0f;
-
-        private float _trashbagCurrentCapacity => _currentTrash.Count == 0 ? 0f : 
-            _currentTrash.Select(trash => trash.WeightAddInGallons).Aggregate((sum, next) => sum + next);
         private readonly List<ITrash> _currentTrash = new List<ITrash>();
+
+        private float _trashbagCurrentCapacity => _currentTrash.Count == 0
+            ? 0f
+            : _currentTrash.Select(trash => trash.WeightAddInGallons).Aggregate((sum, next) => sum + next);
+
+        public event TrashbagTrashAdded TrashAddEvent;
+
+        public event TrashbagFilledFull TrashbagFullEvent;
+
+        public event TrashbagEmptied TrashbagEmptyEvent;
+
         private void ResetTrashbag()
         {
             var trashCopy = _currentTrash.Select(_ => _).ToList();
@@ -31,9 +39,6 @@ namespace Behaviors {
             if (_trashbagCurrentCapacity >= trashbagCapacityInGallons)
                 TrashbagFullEvent?.Invoke();
         }
-        public void Empty()
-        {
-            ResetTrashbag();
-        }
+        public void Empty() => ResetTrashbag();
     }
 }

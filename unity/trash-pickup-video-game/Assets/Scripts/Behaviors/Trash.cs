@@ -7,13 +7,7 @@ namespace Behaviors
     public class Trash : MonoBehaviour
     {
         public Data.Trash trashData;
-        private void Start()
-        {
-            trashData ??= ScriptableObject.CreateInstance<Data.Trash>();
-        }
-        public void Reset()
-        {
-            gameObject.SetActive(false);
-        }
+        public void Reset() => gameObject.SetActive(false);
+        private void Start() => trashData ??= ScriptableObject.CreateInstance<Data.Trash>();
     }
 }

@@ -1,14 +1,14 @@
 using System.Collections;
+using Behaviors;
 using Controllers;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
-using Trash = Behaviors.Trash;
 
 namespace Tests.PlayMode.Controllers
 {
-    public class PlayerControllerTests: InputTestFixture
+    public class PlayerControllerTests : InputTestFixture
     {
         [UnityTest]
         public IEnumerator PlayerCanTapOnTrash()
@@ -16,7 +16,7 @@ namespace Tests.PlayMode.Controllers
             InputSystem.AddDevice<Touchscreen>();
             var pointer = InputSystem.AddDevice<Pointer>();
             var testCamera = new GameObject { transform = { position = new Vector3(10, 1, -10) } }.AddComponent<Camera>();
-            var testTrash = new GameObject { transform = { position = new Vector3(10,0,0)}}.AddComponent<Trash>();
+            var testTrash = new GameObject { transform = { position = new Vector3(10, 0, 0) } }.AddComponent<Trash>();
             testTrash.transform.GetComponent<Rigidbody>().useGravity = false;
             var sut = new GameObject().AddComponent<PlayerController>();
             sut.mainCamera = testCamera;
