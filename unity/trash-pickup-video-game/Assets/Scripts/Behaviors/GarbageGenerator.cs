@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace Behaviors
 {
-    public delegate void GarbageGenerated();
+    public delegate void GarbageGenerated(Transform transform);
 
     // 😡 Curses to the apathy (or whatever it is) that lead people to litter
     public class GarbageGenerator : MonoBehaviour
     {
+        public Camera camera;
         public List<GameObject> trashPrefabs = new List<GameObject>();
 
+        [Range(0f, 5f)] public float generatorPadding = 5f;
         [Range(0.1f, 2.0f)] public float minimumSpawnTimeInSeconds = 0.25f;
 
         [Range(0.1f, 2.0f)] public float maximumSpawnTimeInSeconds = 1.0f;
@@ -28,6 +30,13 @@ namespace Behaviors
 
         private void Start()
         {
+            camera ??= Camera.main;
+            if (camera == null)
+            {
+                #if UNITY_EDITOR
+                Debug.LogError("A garbage generator needs a camera to know where to spawn garbage");
+                #endif
+            }
             FillObjectPool();
             _coroutine = StartCoroutine(RepeatedlySpawnTrash());
         }
@@ -49,11 +58,20 @@ namespace Behaviors
             }
 
             var trash = GetFromObjectPool(trashPrefab);
-            trash.position = new Vector3(Random.Range(-7.5f, 7.5f), transform.position.y, transform.position.z);
+            trash.position = new Vector3(DesiredSpawnX(), transform.position.y, transform.position.z);
             var rigidBody = trash.GetComponent<Rigidbody>();
             if (rigidBody) rigidBody.AddForce(new Vector3(0, RandomUpwardForce(), 0), ForceMode.VelocityChange);
 
-            GarbageGeneratedEvent?.Invoke();
+            GarbageGeneratedEvent?.Invoke(trash);
+        }
+        private float DesiredSpawnX()
+        {
+            var frustumHeight = 2.0f * DesiredDistance() * Mathf.Tan(camera.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            var frustumWidth = frustumHeight * camera.aspect;
+            var halfWidth = frustumWidth * 0.5f;
+            var lowerBound = (camera.transform.position.x - halfWidth) + generatorPadding;
+            var upperBound = (camera.transform.position.x + halfWidth) - generatorPadding;
+            return Random.Range(lowerBound, upperBound);
         }
         private float RandomUpwardForce() => Random.Range(minimumUpwardVelocity, maximumUpwardVelocity);
         private Transform GetFromObjectPool(GameObject trashPrefab)
@@ -85,5 +103,11 @@ namespace Behaviors
                 _objectPool[trashPrefab].Add(trash.transform);
             }
         });
+
+        private float DesiredDistance()
+        {
+            // Desired distance = how far is garbage generator from the camera?
+            return Vector3.Distance(camera.transform.position, transform.position);
+        }
     }
 }

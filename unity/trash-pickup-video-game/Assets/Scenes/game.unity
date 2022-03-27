@@ -529,6 +529,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1634423470}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: maximumUpwardVelocity
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: minimumUpwardVelocity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: maximumSpawnTimeInSeconds
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: minimumSpawnTimeInSeconds
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7904572296504412434, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: m_RootOrder
       value: 5
