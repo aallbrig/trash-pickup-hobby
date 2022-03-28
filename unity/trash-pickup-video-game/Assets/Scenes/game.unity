@@ -219,6 +219,17 @@ Transform:
   m_Father: {fileID: 1634423471}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
+--- !u!114 &961438209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9006951029991003672, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
+  m_PrefabInstance: {fileID: 7200642904749443488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da39c2015ac5d4cb0bde9b5d3c5e4006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1634423468
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +553,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: trashPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: maximumSpawnTimeInSeconds
       value: 1.25
       objectReference: {fileID: 0}
@@ -549,6 +564,10 @@ PrefabInstance:
       propertyPath: minimumSpawnTimeInSeconds
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: trashPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 2581898759871589098, guid: e069b2ca211be4769860927445d2c95d, type: 3}
     - target: {fileID: 7904572296504412434, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -609,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 9073511603805671416, guid: 41b89bd0f2f2c4f3e80413965c3af36e, type: 3}
       propertyPath: trashBag
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 961438209}
     - target: {fileID: 9073511603805671416, guid: 41b89bd0f2f2c4f3e80413965c3af36e, type: 3}
       propertyPath: mainCamera
       value: 
