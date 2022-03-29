@@ -40,6 +40,8 @@ namespace Tests.PlayMode.Behaviors
             public float WeightAddInGallons => 15.0f;
 
             public float Score => 5.0f;
+
+            public AudioClip CollectSound => null;
         }
     }
 }

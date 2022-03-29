@@ -10,7 +10,10 @@ namespace Data
         public float score = 1.0f;
 
         public float WeightAddInGallons => weightInGallons;
+        public AudioClip collectSound;
 
         public float Score => score;
+
+        public AudioClip CollectSound => collectSound;
     }
 }
