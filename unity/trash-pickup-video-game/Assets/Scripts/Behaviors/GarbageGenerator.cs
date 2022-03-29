@@ -60,7 +60,11 @@ namespace Behaviors
             var trash = GetFromObjectPool(trashPrefab);
             trash.position = new Vector3(DesiredSpawnX(), transform.position.y, transform.position.z);
             var rigidBody = trash.GetComponent<Rigidbody>();
-            if (rigidBody) rigidBody.AddForce(new Vector3(0, RandomUpwardForce(), 0), ForceMode.VelocityChange);
+            if (rigidBody)
+            {
+                rigidBody.AddForce(new Vector3(0, RandomUpwardForce(), 0), ForceMode.VelocityChange);
+                rigidBody.AddTorque(trash.transform.up * Random.Range(1f, 180f));
+            }
 
             GarbageGeneratedEvent?.Invoke(trash);
         }
