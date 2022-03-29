@@ -22,6 +22,7 @@ namespace Tests.PlayMode.Behaviors
         [UnityTest]
         public IEnumerator AudioManagerCanPlaySoundsForCollectingTrash()
         {
+            var audioListener = new GameObject().AddComponent<AudioListener>();
             var eventCalled = false;
             var sut = new GameObject().AddComponent<AudioManager>();
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
