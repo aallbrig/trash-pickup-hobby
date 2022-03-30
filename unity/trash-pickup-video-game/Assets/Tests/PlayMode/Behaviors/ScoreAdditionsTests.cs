@@ -17,8 +17,7 @@ namespace Tests.PlayMode.Behaviors
     }
     public class ScoreAdditionsTests
     {
-        // TODO: Why are these tests passing locally but not in CI?
-        // [UnityTest]
+        [UnityTest]
         public IEnumerator ScoreAdditionsDisplaysScoreOnTrashAdd()
         {
             var sut = new GameObject().AddComponent<ScoreAdditions>();
@@ -26,15 +25,14 @@ namespace Tests.PlayMode.Behaviors
             var text = "";
             sut.ScoreAddDisplayedEvent += displayText => text = displayText;
             sut.trashbag = testTrashbag;
-            yield return new WaitForEndOfFrame();
+            yield return null;
             
             testTrashbag.Add(new TestTrash());
             
             Assert.AreEqual("+ 1 points\n+ 25 weight", text);
         }
 
-        // TODO: Why are these tests passing locally but not in CI?
-        // [UnityTest]
+        [UnityTest]
         public IEnumerator ScoreAdditionsDisplaysScoreOnTrashEmpty()
         {
             var sut = new GameObject().AddComponent<ScoreAdditions>();
@@ -42,7 +40,7 @@ namespace Tests.PlayMode.Behaviors
             var text = "";
             sut.ScoreAddDisplayedEvent += displayText => text = displayText;
             sut.trashbag = testTrashbag;
-            yield return new WaitForEndOfFrame();
+            yield return null;
             
             testTrashbag.Add(new TestTrash());
             testTrashbag.Add(new TestTrash());
