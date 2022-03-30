@@ -35,7 +35,7 @@ namespace Tests.PlayMode.Behaviors
             Assert.AreEqual(5.0f + 5.0f, sut.CurrentScore);
         }
 
-        public class TestTrash : ITrash
+        private class TestTrash : ITrash
         {
             public float WeightAddInGallons => 15.0f;
 

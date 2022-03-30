@@ -50,7 +50,7 @@ namespace Tests.PlayMode.Behaviors
             Assert.IsTrue(eventCalled);
         }
 
-        public class TestTrash : ITrash
+        private class TestTrash : ITrash
         {
             public float WeightAddInGallons => 25.0f;
 

@@ -8,8 +8,7 @@ namespace Tests.PlayMode.Behaviors
 {
     public class GarbageGeneratorTests
     {
-        // TODO: FIX
-        // [UnityTest]
+        [UnityTest]
         public IEnumerator GarbageGeneratorGeneratesGarbage()
         {
             var eventCalled = false;
@@ -20,15 +19,14 @@ namespace Tests.PlayMode.Behaviors
             sut.GarbageGeneratedEvent = _ => eventCalled = true;
             sut.minimumSpawnTimeInSeconds = 0.001f;
             sut.maximumSpawnTimeInSeconds = 0.0015f;
-            yield return new WaitForEndOfFrame();
+            yield return null;
 
             yield return new WaitForSeconds(0.2f);
 
             Assert.IsTrue(eventCalled);
         }
         
-        // TODO: FIX
-        // [UnityTest]
+        [UnityTest]
         public IEnumerator GarbageGeneratorGeneratesGarbageACertainDistanceAway()
         {
             Transform generatedTrash = null;
@@ -41,7 +39,7 @@ namespace Tests.PlayMode.Behaviors
             sut.GarbageGeneratedEvent = _ => generatedTrash = _;
             sut.minimumSpawnTimeInSeconds = 0.001f;
             sut.maximumSpawnTimeInSeconds = 0.0015f;
-            yield return new WaitForEndOfFrame();
+            yield return null;
 
             yield return new WaitForSeconds(0.2f);
 

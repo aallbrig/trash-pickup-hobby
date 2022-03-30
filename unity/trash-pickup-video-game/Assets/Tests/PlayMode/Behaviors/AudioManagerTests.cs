@@ -20,8 +20,7 @@ namespace Tests.PlayMode.Behaviors
             public AudioClip CollectSound => AudioClip.Create("fake-name", 1, 1, 1000, false, _ => {});
         }
 
-        // TODO: Fix
-        // [UnityTest]
+        [UnityTest]
         public IEnumerator AudioManagerCanPlaySoundsForCollectingTrash()
         {
             var audioListener = new GameObject().AddComponent<AudioListener>();
@@ -30,8 +29,7 @@ namespace Tests.PlayMode.Behaviors
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             sut.trashbag = testTrashbag;
             sut.CollectAudioStartedEvent = () => eventCalled = true;
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+            yield return null;
 
             testTrashbag.Add(new TestTrash());
 
