@@ -700,6 +700,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5240675715128969585, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
+      propertyPath: displayTimeSeconds
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7200642904106491354, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
       propertyPath: m_Name
       value: User Interface

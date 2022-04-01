@@ -23,7 +23,7 @@ namespace Tests.PlayMode.Behaviors
             var sut = new GameObject().AddComponent<ScoreAdditions>();
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             var text = "";
-            sut.ScoreAddDisplayedEvent += displayText => text = displayText;
+            sut.ScoreTextDisplayedEvent += displayText => text = displayText;
             sut.trashbag = testTrashbag;
             yield return null;
             
@@ -38,7 +38,7 @@ namespace Tests.PlayMode.Behaviors
             var sut = new GameObject().AddComponent<ScoreAdditions>();
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             var text = "";
-            sut.ScoreAddDisplayedEvent += displayText => text = displayText;
+            sut.ScoreTextDisplayedEvent += displayText => text = displayText;
             sut.trashbag = testTrashbag;
             yield return null;
             
