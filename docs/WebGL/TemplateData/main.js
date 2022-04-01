@@ -7,7 +7,7 @@ var config = {
     streamingAssetsUrl: "StreamingAssets",
     companyName: "Andrew Allbright",
     productName: "Trash Pickup Video Game",
-    productVersion: "0.0.61",
+    productVersion: "0.0.62",
     devicePixelRatio: 1,
 }
 
