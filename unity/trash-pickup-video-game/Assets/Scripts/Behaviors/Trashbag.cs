@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +24,7 @@ namespace Behaviors
         public float trashbagCapacityInGallons = 25.0f;
         private readonly List<ITrash> _currentTrash = new List<ITrash>();
         private RawImage _buttonTexture2d;
+        public CinemachineImpulseSource impulseSource;
 
         private float TrashbagCurrentCapacity => _currentTrash.Count == 0
             ? 0f
@@ -53,6 +54,7 @@ namespace Behaviors
         private void Start()
         {
             _buttonTexture2d = GetComponent<RawImage>();
+            impulseSource ??= GetComponent<CinemachineImpulseSource>();
             SyncTrashbagImage();
         }
 
@@ -72,10 +74,19 @@ namespace Behaviors
         public void Add(ITrash trash)
         {
             _currentTrash.Add(trash);
+            TriggerScreenShake();
             SyncTrashbagImage();
             TrashAddEvent?.Invoke(trash);
+
             if (TrashbagCurrentCapacity >= trashbagCapacityInGallons)
+            {
+                TriggerScreenShake();
                 TrashbagFullEvent?.Invoke();
+            }
+        }
+        private void TriggerScreenShake()
+        {
+            if (impulseSource) impulseSource.GenerateImpulse();
         }
         public void Empty() => ResetTrashbag();
     }
