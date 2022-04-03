@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Behaviors;
 using Generated;
 using UnityEngine;
@@ -26,9 +27,7 @@ namespace Controllers
         [SerializeField] private Vector2 pointerBeginScreenInput;
         [SerializeField] private Vector2 pointerEndScreenInput;
         private PlayerControls _controls;
-        private Plane _intersectingPlane = new Plane(Vector3.forward, Vector3.zero);
-        [SerializeField] private Vector3 startIntersection;
-        [SerializeField] private Vector3 endIntersection;
+        private int _rayNumber = 12;
         private void Awake() => _controls = new PlayerControls();
         private void Start()
         {
@@ -62,9 +61,15 @@ namespace Controllers
             Gizmos.DrawRay(endRay.origin, endRay.direction * 100f);
 
             Gizmos.color = Color.yellow;
-            if (startIntersection != Vector3.zero) Gizmos.DrawSphere(startIntersection, 1f);
-            if (endIntersection != Vector3.zero) Gizmos.DrawSphere(endIntersection, 1f);
-            Gizmos.DrawLine(startIntersection, endIntersection);
+            // For multiple raycasts technique
+            GenerateRays().ForEach(ray => Gizmos.DrawRay(ray.origin, ray.direction * 100f));
+        }
+        private List<Ray> GenerateRays()
+        {
+            var rays = new List<Ray>();
+            for (float i = 0; i < _rayNumber; i++)
+                rays.Add(mainCamera.ScreenPointToRay(Vector2.Lerp(pointerBeginScreenInput, pointerEndScreenInput, i / _rayNumber)));
+            return rays;
         }
         #endif
         public event InteractionStarted InteractionStartedEvent;
@@ -80,38 +85,30 @@ namespace Controllers
             if (Physics.Raycast(screenPointToRay, out var hit, 100f))
             {
                 var trash = hit.collider.transform.GetComponent<Behaviors.Trash>();
-                if (trash)
-                {
-                    trashBag.Add(trash.trashData);
-                    PlayerTrashPickupEvent?.Invoke(trash.trashData);
-                    trash.Reset();
-                }
+                if (trash) PickupTrash(trash);
             }
         }
 
         private void DetectTrashPickupOnSwipe()
         {
-            // Get position for swipe start
-            var startRay = mainCamera.ScreenPointToRay(pointerBeginScreenInput);
-            if (_intersectingPlane.Raycast(startRay, out var distance))
-                startIntersection = startRay.GetPoint(distance);
-            // Get position for swipe end
-            var endRay = mainCamera.ScreenPointToRay(pointerEndScreenInput);
-            if (_intersectingPlane.Raycast(endRay, out distance))
-                endIntersection = endRay.GetPoint(distance);
-
-            var distanceBetweenIntersection = Vector3.Distance(startIntersection, endIntersection);
-            var raycastHits = Physics.RaycastAll(startIntersection, (endIntersection - startIntersection).normalized,  distanceBetweenIntersection);
-            foreach (var hit in raycastHits)
+            PickupTrashUsingMultipleRaycastTechnique();
+        }
+        private void PickupTrashUsingMultipleRaycastTechnique()
+        {
+            GenerateRays().ForEach(ray =>
             {
-                var trash = hit.collider.transform.GetComponent<Behaviors.Trash>();
-                if (trash)
+                if (Physics.Raycast(ray, out var hit, 100f))
                 {
-                    trashBag.Add(trash.trashData);
-                    PlayerTrashPickupEvent?.Invoke(trash.trashData);
-                    trash.Reset();
+                    var trash = hit.collider.transform.GetComponent<Behaviors.Trash>();
+                    if (trash) PickupTrash(trash);
                 }
-            }
+            });
+        }
+        private void PickupTrash(Behaviors.Trash trash)
+        {
+            trashBag.Add(trash.trashData);
+            PlayerTrashPickupEvent?.Invoke(trash.trashData);
+            trash.Reset();
         }
         private void InteractionStarted(InputAction.CallbackContext ctx)
         {
