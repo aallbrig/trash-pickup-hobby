@@ -27,7 +27,7 @@ namespace Controllers
         [SerializeField] private Vector2 pointerBeginScreenInput;
         [SerializeField] private Vector2 pointerEndScreenInput;
         private PlayerControls _controls;
-        private int _rayNumber = 12;
+        private int _rayNumber = 24;
         private void Awake() => _controls = new PlayerControls();
         private void Start()
         {
