@@ -27,6 +27,7 @@ namespace Behaviors
 
         private readonly int _poolSize = 10;
         public GarbageGenerated GarbageGeneratedEvent;
+        private bool _generate;
 
         private void Start()
         {
@@ -48,6 +49,7 @@ namespace Behaviors
 
         private void SpawnTrash()
         {
+            if (_generate == false) return;
             var trashPrefab = RandomTrashPrefab();
             if (trashPrefab == null)
             {
@@ -113,5 +115,7 @@ namespace Behaviors
             // Desired distance = how far is garbage generator from the camera?
             return Vector3.Distance(camera.transform.position, transform.position);
         }
+        public void StartGeneration() => _generate = true;
+        public void StopGeneration() => _generate = false;
     }
 }

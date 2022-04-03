@@ -21,14 +21,36 @@ namespace Controllers
 
     public class PlayerController : MonoBehaviour
     {
-        public int trashLayerMask = 8;
         public Camera mainCamera;
         public Trashbag trashBag;
+        public float sampleTiming = 0.01f;
         [SerializeField] private Vector2 pointerBeginScreenInput;
         [SerializeField] private Vector2 pointerEndScreenInput;
         private PlayerControls _controls;
-        private int _rayNumber = 24;
+        #if UNITY_EDITOR
+        private List<Ray> _rays = new List<Ray>();
+        #endif
+        private bool _listen = false;
+        private float _lastSampleTime;
         private void Awake() => _controls = new PlayerControls();
+        private void Update()
+        {
+            if (_listen == false) return;
+            if (Time.time - _lastSampleTime > sampleTiming)
+            {
+                _lastSampleTime = Time.time;
+                SampleFromCurrentPointerPosition();
+            }
+        }
+        private void SampleFromCurrentPointerPosition()
+        {
+            var currentPosition = _controls.Gameplay.Position.ReadValue<Vector2>();
+            var rayFromCurrentPosition = mainCamera.ScreenPointToRay(currentPosition);
+            #if UNITY_EDITOR
+            _rays.Add(rayFromCurrentPosition);
+            #endif
+            PickupTrashOnRaycastIntercept(rayFromCurrentPosition);
+        }
         private void Start()
         {
             mainCamera ??= Camera.current;
@@ -45,8 +67,8 @@ namespace Controllers
         }
         private void OnInteractionEnd(InteractionData data)
         {
+            StopSwipeSampling();
             DetectTrashPickupOnTap(data);
-            DetectTrashPickupOnSwipe();
         }
         private void OnEnable() => _controls.Enable();
         private void OnDisable() => _controls.Enable();
@@ -61,15 +83,8 @@ namespace Controllers
             Gizmos.DrawRay(endRay.origin, endRay.direction * 100f);
 
             Gizmos.color = Color.yellow;
-            // For multiple raycasts technique
-            GenerateRays().ForEach(ray => Gizmos.DrawRay(ray.origin, ray.direction * 100f));
-        }
-        private List<Ray> GenerateRays()
-        {
-            var rays = new List<Ray>();
-            for (float i = 0; i < _rayNumber; i++)
-                rays.Add(mainCamera.ScreenPointToRay(Vector2.Lerp(pointerBeginScreenInput, pointerEndScreenInput, i / _rayNumber)));
-            return rays;
+            // For multiple raycasts based on sampled swipe technique
+            if (_rays.Count > 0) _rays.ForEach(ray => Gizmos.DrawRay(ray.origin, ray.direction * 100f));
         }
         #endif
         public event InteractionStarted InteractionStartedEvent;
@@ -78,31 +93,34 @@ namespace Controllers
 
         public event PlayerTrashPickup PlayerTrashPickupEvent;
 
-        private void OnInteractionStart(InteractionData data) => DetectTrashPickupOnTap(data);
+        private void OnInteractionStart(InteractionData data)
+        {
+            StartSwipeSampling();
+        }
+        private void StartSwipeSampling()
+        {
+            _listen = true;
+            _lastSampleTime = Time.time;
+            SampleFromCurrentPointerPosition();
+        }
+        private void StopSwipeSampling()
+        {
+            _listen = false;
+            #if UNITY_EDITOR
+            _rays.Clear();
+            #endif
+        }
         private void DetectTrashPickupOnTap(InteractionData data)
         {
-            var screenPointToRay = mainCamera.ScreenPointToRay(data.ScreenPosition);
-            if (Physics.Raycast(screenPointToRay, out var hit, 100f))
+            PickupTrashOnRaycastIntercept(mainCamera.ScreenPointToRay(data.ScreenPosition));
+        }
+        private void PickupTrashOnRaycastIntercept(Ray ray)
+        {
+            if (Physics.Raycast(ray, out var hit, 100f))
             {
                 var trash = hit.collider.transform.GetComponent<Behaviors.Trash>();
                 if (trash) PickupTrash(trash);
             }
-        }
-
-        private void DetectTrashPickupOnSwipe()
-        {
-            PickupTrashUsingMultipleRaycastTechnique();
-        }
-        private void PickupTrashUsingMultipleRaycastTechnique()
-        {
-            GenerateRays().ForEach(ray =>
-            {
-                if (Physics.Raycast(ray, out var hit, 100f))
-                {
-                    var trash = hit.collider.transform.GetComponent<Behaviors.Trash>();
-                    if (trash) PickupTrash(trash);
-                }
-            });
         }
         private void PickupTrash(Behaviors.Trash trash)
         {
