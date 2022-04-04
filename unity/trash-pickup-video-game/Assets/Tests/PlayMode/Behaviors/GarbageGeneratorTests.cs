@@ -21,6 +21,7 @@ namespace Tests.PlayMode.Behaviors
             sut.maximumSpawnTimeInSeconds = 0.0015f;
             yield return null;
 
+            sut.StartGeneration();
             yield return new WaitForSeconds(0.2f);
 
             Assert.IsTrue(eventCalled);
@@ -41,6 +42,7 @@ namespace Tests.PlayMode.Behaviors
             sut.maximumSpawnTimeInSeconds = 0.0015f;
             yield return null;
 
+            sut.StartGeneration();
             yield return new WaitForSeconds(0.2f);
 
             Assert.IsNotNull(generatedTrash);
