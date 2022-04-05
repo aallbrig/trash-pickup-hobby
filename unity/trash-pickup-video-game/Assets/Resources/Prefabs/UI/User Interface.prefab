@@ -733,7 +733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343501803275642395, guid: 67356b1f15eb3420fb9ebc129fa109f8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -60.6
       objectReference: {fileID: 0}
     - target: {fileID: 4343501803275642395, guid: 67356b1f15eb3420fb9ebc129fa109f8, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -754,6 +754,10 @@ PrefabInstance:
     - target: {fileID: 5503085532140666878, guid: 67356b1f15eb3420fb9ebc129fa109f8, type: 3}
       propertyPath: m_Name
       value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503085532140666878, guid: 67356b1f15eb3420fb9ebc129fa109f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8731723283654879087, guid: 67356b1f15eb3420fb9ebc129fa109f8, type: 3}
       propertyPath: m_LocalPosition.z

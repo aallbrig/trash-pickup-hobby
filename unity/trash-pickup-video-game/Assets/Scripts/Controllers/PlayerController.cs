@@ -17,6 +17,8 @@ namespace Controllers
 
     public delegate void InteractionEnded(InteractionData data);
 
+    public delegate void CurrentPositionSampled(InteractionData data);
+
     public delegate void PlayerTrashPickup(Trash trash);
 
     public class PlayerController : MonoBehaviour
@@ -50,6 +52,11 @@ namespace Controllers
             _rays.Add(rayFromCurrentPosition);
             #endif
             PickupTrashOnRaycastIntercept(rayFromCurrentPosition);
+            CurrentPositionSampledEvent?.Invoke(new InteractionData
+            {
+                ScreenPosition = currentPosition,
+                Timing = Time.time
+            });
         }
         private void Start()
         {
@@ -90,6 +97,8 @@ namespace Controllers
         public event InteractionStarted InteractionStartedEvent;
 
         public event InteractionEnded InteractionEndedEvent;
+
+        public event CurrentPositionSampled CurrentPositionSampledEvent;
 
         public event PlayerTrashPickup PlayerTrashPickupEvent;
 
