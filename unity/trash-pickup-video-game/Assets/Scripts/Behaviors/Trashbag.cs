@@ -25,6 +25,7 @@ namespace Behaviors
         private readonly List<ITrash> _currentTrash = new List<ITrash>();
         private RawImage _buttonTexture2d;
         public CinemachineImpulseSource impulseSource;
+        public MainMenu mainMenu;
 
         private float TrashbagCurrentCapacity => _currentTrash.Count == 0
             ? 0f
@@ -55,7 +56,10 @@ namespace Behaviors
         {
             _buttonTexture2d = GetComponent<RawImage>();
             impulseSource ??= GetComponent<CinemachineImpulseSource>();
+            mainMenu ??= FindObjectOfType<MainMenu>();
             SyncTrashbagImage();
+
+            mainMenu.PlayButtonPressedEvent += ResetTrashbag;
         }
 
         public event TrashbagTrashAdded TrashAddEvent;
@@ -66,8 +70,6 @@ namespace Behaviors
 
         private void ResetTrashbag()
         {
-            var trashCopy = _currentTrash.Select(_ => _).ToList();
-            TrashbagEmptyEvent?.Invoke(trashCopy);
             _currentTrash.Clear();
             SyncTrashbagImage();
         }
@@ -88,6 +90,13 @@ namespace Behaviors
         {
             if (impulseSource) impulseSource.GenerateImpulse();
         }
-        public void Empty() => ResetTrashbag();
+        public void Empty()
+        {
+            if (_currentTrash.Count <= 0) return;
+
+            var trashCopy = _currentTrash.Select(_ => _).ToList();
+            TrashbagEmptyEvent?.Invoke(trashCopy);
+            ResetTrashbag();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace Behaviors
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class UserScore : MonoBehaviour
     {
+        public MainMenu mainMenu;
         public Trashbag trashbag;
         private TextMeshProUGUI _displayText;
 
@@ -19,10 +20,18 @@ namespace Behaviors
             _displayText = GetComponent<TextMeshProUGUI>();
             trashbag ??= FindObjectOfType<Trashbag>();
             trashbag ??= new GameObject().AddComponent<Trashbag>();
+            mainMenu ??= FindObjectOfType<MainMenu>();
 
             trashbag.TrashAddEvent += OnTrashAdd;
             trashbag.TrashbagEmptyEvent += OnTrashbagEmpty;
+
+            mainMenu.PlayButtonPressedEvent += ResetScore;
+
             SyncDisplayText();
+        }
+        private void ResetScore()
+        {
+            CurrentScore = 0;
         }
         private void OnTrashAdd(ITrash trash)
         {
