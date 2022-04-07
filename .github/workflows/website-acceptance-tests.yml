@@ -10,10 +10,9 @@ on:
 
 jobs:
   websiteAcceptanceTests:
-    name: Executes acceptance tests on website
+    name: Run acceptance tests on website
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: [deploy]
     steps:
       - uses: actions/checkout@v2
         with:
