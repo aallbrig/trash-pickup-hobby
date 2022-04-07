@@ -12,8 +12,12 @@ mergeInto(LibraryManager.library, {
       window.adBreak({
         type: 'start',
         name: 'start-game',
-        beforeAd: () => window.console.log("Start game before ad"),
-        afterAd: () => window.console.log("Start game after ad")
+        beforeAd: function() {
+            window.console.log("Start game before ad");
+        },
+        afterAd: function() {
+            window.console.log("Start game after ad");
+        },
       });
       window.console.log("Start game advertisement break played");
     }
