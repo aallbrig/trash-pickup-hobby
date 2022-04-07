@@ -5,8 +5,8 @@
   "main": "mocha",
   "scripts": {
     "test": "mocha ./tests",
-    "test-stage": "LANDING_PAGE='https://aallbrig.github.io/trash-pickup-hobby' GAME_URL='https://aallbrig.github.io/trash-pickup-hobby/WebGL/index.html' mocha ./tests",
-    "test-production": "LANDING_PAGE='https://trashpickuphobby.com' GAME_URL='https://trashpickuphobby.com/WebGL/index.html' mocha ./tests"
+    "test-stage": "HEADLESS_MODE=true LANDING_PAGE='https://aallbrig.github.io/trash-pickup-hobby' GAME_URL='https://aallbrig.github.io/trash-pickup-hobby/WebGL/index.html' mocha ./tests",
+    "test-production": "HEADLESS_MODE=true LANDING_PAGE='https://trashpickuphobby.com' GAME_URL='https://trashpickuphobby.com/WebGL/index.html' mocha ./tests"
   },
   "keywords": [
     "Trash",

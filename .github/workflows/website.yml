@@ -35,15 +35,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-        - name: Install dependencies
-          uses: tj-actions/puppeteer@v3.2
-          with:
-            args: npm --prefix ./acceptance-tests install
-        - name: Run acceptance tests against staging environment
-          uses: tj-actions/puppeteer@v3.2
-          with:
-            args: npm --prefix ./acceptance-tests run test-stage
-        - name: Run acceptance tests against production environment
-          uses: tj-actions/puppeteer@v3.2
-          with:
-            args: npm --prefix ./acceptance-tests run test-production
+          lfs: true
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm --prefix ./acceptance-tests install
+      - run: npm --prefix ./acceptance-tests run test-stage
+      - run: npm --prefix ./acceptance-tests run test-production
