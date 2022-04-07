@@ -59,7 +59,7 @@ namespace Behaviors
             mainMenu ??= FindObjectOfType<MainMenu>();
             SyncTrashbagImage();
 
-            mainMenu.PlayButtonPressedEvent += ResetTrashbag;
+            if (mainMenu) mainMenu.PlayButtonPressedEvent += ResetTrashbag;
         }
 
         public event TrashbagTrashAdded TrashAddEvent;

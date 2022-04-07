@@ -25,7 +25,7 @@ namespace Behaviors
             trashbag.TrashAddEvent += OnTrashAdd;
             trashbag.TrashbagEmptyEvent += OnTrashbagEmpty;
 
-            mainMenu.PlayButtonPressedEvent += ResetScore;
+            if (mainMenu) mainMenu.PlayButtonPressedEvent += ResetScore;
 
             SyncDisplayText();
         }

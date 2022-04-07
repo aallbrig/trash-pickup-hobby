@@ -13,11 +13,12 @@ namespace Tests.PlayMode.Behaviors
         {
             var eventCalled = false;
             var sut = new GameObject().AddComponent<GameTimer>();
+            sut.countDown = true;
             sut.CountDownByOneSecondEvent += _ => eventCalled = true;
-            sut.gameTimeInSeconds = 2f;
+            sut.gameTimeInSeconds = 1f;
             yield return null;
 
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(0.2f);
 
             Assert.IsTrue(eventCalled);
         }
@@ -26,6 +27,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var eventCalled = false;
             var sut = new GameObject().AddComponent<GameTimer>();
+            sut.countDown = true;
             sut.OutOfTimeEvent += () => eventCalled = true;
             sut.gameTimeInSeconds = 0.25f;
             yield return null;
@@ -43,6 +45,7 @@ namespace Tests.PlayMode.Behaviors
             sut.CountDownByOneSecondEvent += _ => countDownCallCount++;
             sut.OutOfTimeEvent += () => eventCalled = true;
             sut.gameTimeInSeconds = 3f;
+            sut.countDown = true;
             yield return null;
 
             yield return new WaitForSeconds(3.1f);
