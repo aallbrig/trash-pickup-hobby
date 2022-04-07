@@ -91,8 +91,8 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
 
-  deploys:
-    name: Deploys WebGL to Github Pages
+  deploy:
+    name: Deploys WebGL Game to Github Pages
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     needs: [tests, builds]
@@ -112,3 +112,19 @@ jobs:
           folder: build/WebGL
           target-folder: docs
           clean: false
+
+  websiteAcceptanceTests:
+    name: Executes acceptance tests on website
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [deploy]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm --prefix ./acceptance-tests install
+      - run: npm --prefix ./acceptance-tests run test-stage
+      - run: npm --prefix ./acceptance-tests run test-production
