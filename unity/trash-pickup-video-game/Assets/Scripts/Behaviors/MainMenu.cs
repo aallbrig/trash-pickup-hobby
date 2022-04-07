@@ -9,7 +9,15 @@ namespace Behaviors
 
         private void Start()
         {
-            PlayButtonPressedEvent += () => gameObject.SetActive(false);
+            PlayButtonPressedEvent += HideMenu;
+        }
+        private void HideMenu()
+        {
+            gameObject.SetActive(false);
+        }
+        public void ShowMenu()
+        {
+            gameObject.SetActive(true);
         }
         public void ReadyToPlay()
         {

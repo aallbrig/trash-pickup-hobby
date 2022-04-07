@@ -116,6 +116,19 @@ namespace Behaviors
             return Vector3.Distance(camera.transform.position, transform.position);
         }
         public void StartGeneration() => _generate = true;
-        public void StopGeneration() => _generate = false;
+        public void StopGeneration()
+        {
+            
+            ResetAllObjectsInPool();
+            _generate = false;
+        }
+        private void ResetAllObjectsInPool()
+        {
+            _objectPool.Keys.ToList()
+                .ForEach(key =>
+                    _objectPool[key].ForEach(objectTransform => objectTransform.gameObject.SetActive(false)
+                )
+            );
+        }
     }
 }

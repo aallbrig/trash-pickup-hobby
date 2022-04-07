@@ -1,6 +1,5 @@
 using System.Collections;
 using Behaviors;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Assert = UnityEngine.Assertions.Assert;
