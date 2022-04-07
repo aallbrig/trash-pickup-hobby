@@ -7,26 +7,26 @@ const AMAZON_AD_SYSTEM_URL = process.env.AMAZON_AD_SYSTEM_URL || "//ws-na.amazon
 
 describe("The landing page for the trash pickup hobby website", () => {
   let browser;
-  let page;
 
   before(async () => {
     browser = await puppeteer.launch({
       headless: HEADLESS_MODE,
       args: ['--disable-dev-shm-usage']
     });
-    page = await browser.newPage();
   });
   after(async () => {
     await browser.close();
   });
 
   it("Should have a 🔥 page title", async () => {
+    const page = await browser.newPage();
     await page.goto(LANDING_PAGE);
     let title = await page.title();
     assert.equal(title, "Trash Pickup Hobby");
   });
 
-  it("Should have the correct amazon affiliates tracking ID in all amazon links", async () => {
+  it("Should have the correct amazon affiliates tracking ID in all amazon iframes 💰", async () => {
+    const page = await browser.newPage();
     await page.goto(LANDING_PAGE);
 
     const frames = await page.frames();
@@ -35,5 +35,15 @@ describe("The landing page for the trash pickup hobby website", () => {
     );
 
     assert.notEqual(amazonIframeSources, undefined);
+  });
+
+  it("Should link the official trash pickup video game", async () => {
+    const page = await browser.newPage();
+    await page.goto(LANDING_PAGE);
+
+    const videoGameLink = await page.$('#link-to-video-game');
+
+    // If no HTML element is found, page.$ returns null
+    assert.notEqual(videoGameLink, null);
   });
 });

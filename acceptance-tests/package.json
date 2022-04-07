@@ -4,7 +4,8 @@
   "description": "Acceptance tests for the trash pickup hobby website",
   "main": "mocha",
   "scripts": {
-    "test": "mocha ./tests"
+    "test": "mocha ./tests",
+    "test-production": "LANDING_PAGE='https://trashpickuphobby.com' GAME_URL='https://trashpickuphobby.com/WebGL/index.html' mocha ./tests"
   },
   "keywords": [
     "Trash",
