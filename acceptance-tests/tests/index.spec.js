@@ -43,7 +43,7 @@ describe("The landing page for the trash pickup hobby website", () => {
     });
   });
 
-  it("Should link the official trash pickup video game", async () => {
+  it("Should link to the official trash pickup video game 🕹", async () => {
     const page = await browser.newPage();
     await page.goto(LANDING_PAGE);
 
@@ -52,4 +52,24 @@ describe("The landing page for the trash pickup hobby website", () => {
     // If no HTML element is found, page.$ returns null
     assert.notEqual(videoGameLink, null);
   });
+
+  it("Should contain a link to see the source code, for those curious 💻", async () => {
+    const page = await browser.newPage();
+    await page.goto(LANDING_PAGE);
+
+    const linkToSourceCode = await page.$('#source-code-link');
+
+    // If no HTML element is found, page.$ returns null
+    assert.notEqual(linkToSourceCode, null);
+  });
+
+  it("Should contain a link to the author's website 🧑‍💻", async () => {
+    const page = await browser.newPage();
+    await page.goto(LANDING_PAGE);
+
+    const linkToAuthorWebsite = await page.$('#author-website-link');
+
+    // If no HTML element is found, page.$ returns null
+    assert.notEqual(linkToAuthorWebsite, null);
+  })
 });
