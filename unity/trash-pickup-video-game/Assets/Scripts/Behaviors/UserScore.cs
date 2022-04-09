@@ -29,9 +29,11 @@ namespace Behaviors
 
             SyncDisplayText();
         }
+
         private void ResetScore()
         {
             CurrentScore = 0;
+            SyncDisplayText();
         }
         private void OnTrashAdd(ITrash trash)
         {
