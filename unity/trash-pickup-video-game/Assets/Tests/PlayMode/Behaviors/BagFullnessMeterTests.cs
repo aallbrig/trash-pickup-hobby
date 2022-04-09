@@ -1,7 +1,6 @@
 using System.Collections;
 using Behaviors;
 using Models;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Assert = UnityEngine.Assertions.Assert;
@@ -22,19 +21,27 @@ namespace Tests.PlayMode.Behaviors
             public float Score { get; }
             public AudioClip CollectSound => default;
         }
+
         [UnityTest]
         public IEnumerator BagFullnessMeterUpdatesOnTrashbagAdd()
         {
             var eventCalled = false;
-            var sut = new GameObject().AddComponent<BagFullnessMeter>();
+            var eventCallCount = 0;
+            var sut = new GameObject().AddComponent<TrashBagFullnessMeter>();
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             sut.trashbag = testTrashbag;
-            sut.MeterUiSyncedEvent += () => eventCalled = true;
+            sut.MeterUiSyncedEvent += () =>
+            {
+                eventCalled = true;
+                eventCallCount++;
+            };
             yield return null;
 
             testTrashbag.Add(new TestTrash(1f));
 
             Assert.IsTrue(eventCalled);
+            // Event called two times -- one for start, one for adding trash
+            Assert.AreEqual(2, eventCallCount);
         }
 
         [UnityTest]
@@ -42,7 +49,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var eventCalled = false;
             var eventCallCount = 0;
-            var sut = new GameObject().AddComponent<BagFullnessMeter>();
+            var sut = new GameObject().AddComponent<TrashBagFullnessMeter>();
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             testTrashbag.trashbagCapacityInGallons = 1f;
             sut.trashbag = testTrashbag;
@@ -56,8 +63,8 @@ namespace Tests.PlayMode.Behaviors
             testTrashbag.Add(new TestTrash(1f));
 
             Assert.IsTrue(eventCalled);
-            // Event called twice -- one for add, one for full
-            Assert.AreEqual(2, eventCallCount);
+            // Event called three times -- one for start, one for adding trash, one for full
+            Assert.AreEqual(3, eventCallCount);
         }
 
         [UnityTest]
@@ -65,7 +72,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var eventCalled = false;
             var eventCallCount = 0;
-            var sut = new GameObject().AddComponent<BagFullnessMeter>();
+            var sut = new GameObject().AddComponent<TrashBagFullnessMeter>();
             var testTrashbag = new GameObject().AddComponent<Trashbag>();
             testTrashbag.trashbagCapacityInGallons = 1f;
             sut.trashbag = testTrashbag;
@@ -80,8 +87,8 @@ namespace Tests.PlayMode.Behaviors
             testTrashbag.Empty();
 
             Assert.IsTrue(eventCalled);
-            // Event called three times -- one for add, one for full, one for empty
-            Assert.AreEqual(3, eventCallCount);
+            // Event called four times -- one for start, one for adding trash, one for full, one for empty
+            Assert.AreEqual(4, eventCallCount);
         }
     }
 }

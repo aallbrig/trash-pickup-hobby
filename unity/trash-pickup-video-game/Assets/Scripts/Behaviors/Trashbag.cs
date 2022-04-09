@@ -33,7 +33,7 @@ namespace Behaviors
 
         private void SyncTrashbagImage()
         {
-            var percentFull = TrashbagCurrentCapacity == 0f ? 0f : TrashbagCurrentCapacity / trashbagCapacityInGallons;
+            var percentFull = FullPercentInDecimal();
             if (percentFull < 0.25f)
             {
                 _buttonTexture2d.texture = trashbagEmpty;
@@ -95,8 +95,9 @@ namespace Behaviors
             if (_currentTrash.Count <= 0) return;
 
             var trashCopy = _currentTrash.Select(_ => _).ToList();
-            TrashbagEmptyEvent?.Invoke(trashCopy);
             ResetTrashbag();
+            TrashbagEmptyEvent?.Invoke(trashCopy);
         }
+        public float FullPercentInDecimal() => TrashbagCurrentCapacity == 0f ? 0f : TrashbagCurrentCapacity / trashbagCapacityInGallons;
     }
 }
