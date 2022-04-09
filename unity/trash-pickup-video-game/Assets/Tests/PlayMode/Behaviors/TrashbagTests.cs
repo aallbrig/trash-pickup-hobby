@@ -28,6 +28,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var sut = new GameObject().AddComponent<Trashbag>();
             var eventCalled = false;
+            sut.trashbagCapacityInGallons = 1f;
             sut.TrashbagFullEvent += () => eventCalled = true;
             yield return null;
 
@@ -52,9 +53,15 @@ namespace Tests.PlayMode.Behaviors
 
         private class TestTrash : ITrash
         {
-            public float WeightAddInGallons => 25.0f;
+            public TestTrash(float weight = 1f, float score = 1f)
+            {
+                WeightAddInGallons = weight;
+                Score = score;
+            }
 
-            public float Score => 1.0f;
+            public float WeightAddInGallons { get; }
+
+            public float Score { get; }
 
             public AudioClip CollectSound => null;
         }
