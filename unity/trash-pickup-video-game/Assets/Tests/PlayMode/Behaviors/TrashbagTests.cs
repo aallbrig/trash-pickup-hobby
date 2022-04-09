@@ -51,6 +51,22 @@ namespace Tests.PlayMode.Behaviors
             Assert.IsTrue(eventCalled);
         }
 
+        [UnityTest]
+        public IEnumerator TrashbagCannotAcceptTrashOnceFull()
+        {
+            var sut = new GameObject().AddComponent<Trashbag>();
+            sut.trashbagCapacityInGallons = 1f;
+            var callCount = 0;
+            sut.TrashAddEvent += _ => callCount++;
+            yield return null;
+
+            sut.Add(new TestTrash(1f));
+            // The trash bag is now full and cannot accept more trash
+            sut.Add(new TestTrash());
+
+            Assert.AreEqual(1, callCount);
+        }
+
         private class TestTrash : ITrash
         {
             public TestTrash(float weight = 1f, float score = 1f)

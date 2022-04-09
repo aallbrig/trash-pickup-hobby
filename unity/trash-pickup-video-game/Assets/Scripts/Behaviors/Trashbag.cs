@@ -60,6 +60,21 @@ namespace Behaviors
             SyncTrashbagImage();
 
             if (mainMenu) mainMenu.PlayButtonPressedEvent += ResetTrashbag;
+            TrashbagFullEvent += () =>
+            {
+                SyncTrashbagImage();
+                TriggerScreenShake();
+            };
+            TrashAddEvent += _ =>
+            {
+                SyncTrashbagImage();
+                TriggerScreenShake();
+            };
+            TrashbagEmptyEvent += _ =>
+            {
+                SyncTrashbagImage();
+                TriggerScreenShake();
+            };
         }
 
         public event TrashbagTrashAdded TrashAddEvent;
@@ -75,16 +90,14 @@ namespace Behaviors
         }
         public void Add(ITrash trash)
         {
+            // Only add trash if the trash bag is not full
+            if (FullPercentInDecimal() >= 1.0f) return;
+
             _currentTrash.Add(trash);
-            TriggerScreenShake();
-            SyncTrashbagImage();
             TrashAddEvent?.Invoke(trash);
 
             if (TrashbagCurrentCapacity >= trashbagCapacityInGallons)
-            {
-                TriggerScreenShake();
                 TrashbagFullEvent?.Invoke();
-            }
         }
         private void TriggerScreenShake()
         {
