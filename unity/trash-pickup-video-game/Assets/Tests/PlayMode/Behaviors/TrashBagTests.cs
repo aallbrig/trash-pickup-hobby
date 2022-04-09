@@ -62,7 +62,7 @@ namespace Tests.PlayMode.Behaviors
 
             sut.Add(new TestTrash(1f));
             // The trash bag is now full and cannot accept more trash
-            sut.Add(new TestTrash());
+            sut.Add(new TestTrash(1f));
 
             Assert.AreEqual(1, callCount);
         }

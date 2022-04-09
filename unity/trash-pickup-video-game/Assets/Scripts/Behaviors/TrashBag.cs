@@ -100,7 +100,8 @@ namespace Behaviors
                     TrashBagFullEvent?.Invoke();
             }
         }
-        public bool CanAddTrash() => FullPercentInDecimal() <= 1.0f;
+        // Ignore if the trash will set the capacity over 100%
+        public bool CanAddTrash() => FullPercentInDecimal() < 1.0f;
         private void TriggerScreenShake()
         {
             if (impulseSource) impulseSource.GenerateImpulse();
