@@ -11,10 +11,13 @@ namespace Tests.PlayMode.Behaviors
     {
         private class TestTrash : ITrash
         {
-            public float WeightAddInGallons => 25.0f;
-
-            public float Score => 1.0f;
-
+            public TestTrash(float weightInGallons = 1f, float score = 1f)
+            {
+                WeightAddInGallons = weightInGallons;
+                Score = score;
+            }
+            public float WeightAddInGallons { get; }
+            public float Score { get; }
             public AudioClip CollectSound => null;
         }
         [UnityTest]
@@ -26,10 +29,10 @@ namespace Tests.PlayMode.Behaviors
             sut.ScoreTextDisplayedEvent += displayText => text = displayText;
             sut.trashbag = testTrashbag;
             yield return null;
-            
-            testTrashbag.Add(new TestTrash());
-            
-            Assert.AreEqual("+ 1 points\n+ 25 weight", text);
+
+            testTrashbag.Add(new TestTrash(1f, 1f));
+
+            Assert.AreEqual("+ 1 points\n+ 1 weight", text);
         }
 
         [UnityTest]
@@ -41,12 +44,12 @@ namespace Tests.PlayMode.Behaviors
             sut.ScoreTextDisplayedEvent += displayText => text = displayText;
             sut.trashbag = testTrashbag;
             yield return null;
-            
-            testTrashbag.Add(new TestTrash());
-            testTrashbag.Add(new TestTrash());
-            testTrashbag.Add(new TestTrash());
+
+            testTrashbag.Add(new TestTrash(0f, 1f));
+            testTrashbag.Add(new TestTrash(0f, 1f));
+            testTrashbag.Add(new TestTrash(0f, 1f));
             testTrashbag.Empty();
-            
+
             Assert.AreEqual("+ 3 points", text);
         }
     }
