@@ -7,13 +7,13 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode.Behaviors
 {
-    public class TrashbagMonobehaviourTests
+    public class TrashBagMonobehaviourTests
     {
 
         [UnityTest]
-        public IEnumerator TrashbagCanGainTrash()
+        public IEnumerator TrashBagCanGainTrash()
         {
-            var sut = new GameObject().AddComponent<Trashbag>();
+            var sut = new GameObject().AddComponent<TrashBag>();
             var eventCalled = false;
             sut.TrashAddEvent += _ => eventCalled = true;
             yield return null;
@@ -24,12 +24,12 @@ namespace Tests.PlayMode.Behaviors
         }
 
         [UnityTest]
-        public IEnumerator TrashbagCanBeFilledToFull()
+        public IEnumerator TrashBagCanBeFilledToFull()
         {
-            var sut = new GameObject().AddComponent<Trashbag>();
+            var sut = new GameObject().AddComponent<TrashBag>();
             var eventCalled = false;
-            sut.trashbagCapacityInGallons = 1f;
-            sut.TrashbagFullEvent += () => eventCalled = true;
+            sut.trashBagCapacityInGallons = 1f;
+            sut.TrashBagFullEvent += () => eventCalled = true;
             yield return null;
 
             sut.Add(new TestTrash());
@@ -38,11 +38,11 @@ namespace Tests.PlayMode.Behaviors
         }
 
         [UnityTest]
-        public IEnumerator TrashbagCanBeEmptied()
+        public IEnumerator TrashBagCanBeEmptied()
         {
-            var sut = new GameObject().AddComponent<Trashbag>();
+            var sut = new GameObject().AddComponent<TrashBag>();
             var eventCalled = false;
-            sut.TrashbagEmptyEvent += _ => eventCalled = true;
+            sut.TrashBagEmptyEvent += _ => eventCalled = true;
             yield return null;
 
             sut.Add(new TestTrash());
@@ -52,10 +52,10 @@ namespace Tests.PlayMode.Behaviors
         }
 
         [UnityTest]
-        public IEnumerator TrashbagCannotAcceptTrashOnceFull()
+        public IEnumerator TrashBagCannotAcceptTrashOnceFull()
         {
-            var sut = new GameObject().AddComponent<Trashbag>();
-            sut.trashbagCapacityInGallons = 1f;
+            var sut = new GameObject().AddComponent<TrashBag>();
+            sut.trashBagCapacityInGallons = 1f;
             var callCount = 0;
             sut.TrashAddEvent += _ => callCount++;
             yield return null;

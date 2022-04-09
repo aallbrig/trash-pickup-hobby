@@ -14,7 +14,7 @@ namespace Tests.PlayMode.Behaviors
             var eventCalled = false;
             var camera = new GameObject().AddComponent<Camera>();
             var sut = new GameObject().AddComponent<GarbageGenerator>();
-            sut.camera = camera;
+            sut.injectedCamera = camera;
             sut.trashPrefabs.Add(new GameObject());
             sut.GarbageGeneratedEvent = _ => eventCalled = true;
             sut.minimumSpawnTimeInSeconds = 0.001f;
@@ -35,7 +35,7 @@ namespace Tests.PlayMode.Behaviors
             camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + 10,
                 camera.transform.position.z - 20);
             var sut = new GameObject().AddComponent<GarbageGenerator>();
-            sut.camera = camera;
+            sut.injectedCamera = camera;
             sut.trashPrefabs.Add(new GameObject());
             sut.GarbageGeneratedEvent = _ => generatedTrash = _;
             sut.minimumSpawnTimeInSeconds = 0.001f;

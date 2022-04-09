@@ -13,7 +13,7 @@ namespace Behaviors
     {
         public ScoreTextDisplayed ScoreTextDisplayedEvent;
         public ScoreTextHidden ScoreTextHiddenEvent;
-        public Trashbag trashbag;
+        public TrashBag trashBag;
         public float displayTimeSeconds = 1.5f;
         private TextMeshProUGUI _text;
         [SerializeField] private float scoreAddDisplayedTime;
@@ -21,10 +21,10 @@ namespace Behaviors
         {
             _text = GetComponent<TextMeshProUGUI>();
 
-            trashbag ??= FindObjectOfType<Trashbag>();
+            trashBag ??= FindObjectOfType<TrashBag>();
             
-            trashbag.TrashAddEvent += OnTrashAdd;
-            trashbag.TrashbagEmptyEvent += OnTrashEmpty;
+            trashBag.TrashAddEvent += OnTrashAdd;
+            trashBag.TrashBagEmptyEvent += OnTrashEmpty;
         }
         private void Update()
         {

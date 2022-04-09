@@ -26,12 +26,12 @@ namespace Tests.PlayMode.Behaviors
             var audioListener = new GameObject().AddComponent<AudioListener>();
             var eventCalled = false;
             var sut = new GameObject().AddComponent<AudioManager>();
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            sut.trashBag = testTrashBag;
             sut.CollectAudioStartedEvent = () => eventCalled = true;
             yield return null;
 
-            testTrashbag.Add(new TestTrash());
+            testTrashBag.Add(new TestTrash());
 
             Assert.IsTrue(eventCalled);
         }

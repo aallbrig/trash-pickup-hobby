@@ -8,12 +8,12 @@ namespace Behaviors
     public class AudioManager : MonoBehaviour
     {
         public CollectAudioStarted CollectAudioStartedEvent;
-        public Trashbag trashbag;
+        public TrashBag trashBag;
         private AudioSource _audioSource;
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            trashbag.TrashAddEvent += OnTrashCollected;
+            trashBag.TrashAddEvent += OnTrashCollected;
         }
         private void OnTrashCollected(ITrash trash)
         {

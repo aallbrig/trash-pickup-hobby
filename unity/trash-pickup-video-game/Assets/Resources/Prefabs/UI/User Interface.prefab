@@ -70,7 +70,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -85, y: 11.8}
+  m_AnchoredPosition: {x: -85, y: 11.799988}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &2019718365602612990
@@ -570,12 +570,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2470231527348222097, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
       propertyPath: m_Name
-      value: Trashbag
+      value: TrashBag
       objectReference: {fileID: 0}
     - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
       propertyPath: mainMenu
       value: 
       objectReference: {fileID: 623727796462445000}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: TrashBagFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 011f769f298214447bd5ee2a808afcfc, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: trashBagFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 011f769f298214447bd5ee2a808afcfc, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: TrashBagEmpty
+      value: 
+      objectReference: {fileID: 2800000, guid: 3ff77abd61af1458db3e176cdd58f1fd, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: trashBagEmpty
+      value: 
+      objectReference: {fileID: 2800000, guid: 3ff77abd61af1458db3e176cdd58f1fd, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: TrashBag25PercentFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 0654396851da541cb8485000c631c255, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: TrashBag50PercentFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 825434633ac214e4ca49a63411cec421, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: TrashBag75PercentFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 20f54e351d46c4315af8a5635a824510, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: trashBag25PercentFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 0654396851da541cb8485000c631c255, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: trashBag50PercentFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 825434633ac214e4ca49a63411cec421, type: 3}
+    - target: {fileID: 8406861704222933282, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
+      propertyPath: trashBag75PercentFull
+      value: 
+      objectReference: {fileID: 2800000, guid: 20f54e351d46c4315af8a5635a824510, type: 3}
     m_RemovedComponents:
     - {fileID: 1937629981284440234, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec756500211a84d81a6d0302b87ea7f8, type: 3}
@@ -602,6 +642,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4275931157352468767}
     m_Modifications:
+    - target: {fileID: 6509796873086464362, guid: ff9da2e678e0c4e0db9373cb6db1cb11, type: 3}
+      propertyPath: trashBag
+      value: 
+      objectReference: {fileID: 9006951029991003672}
     - target: {fileID: 6509796873086464362, guid: ff9da2e678e0c4e0db9373cb6db1cb11, type: 3}
       propertyPath: trashbag
       value: 
@@ -797,6 +841,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8079459857387055392, guid: 49927df7891de46d19b350bf720aa3a6, type: 3}
+      propertyPath: trashBag
+      value: 
+      objectReference: {fileID: 9006951029991003672}
+    - target: {fileID: 8079459857387055392, guid: 49927df7891de46d19b350bf720aa3a6, type: 3}
       propertyPath: trashbag
       value: 
       objectReference: {fileID: 9006951029991003672}
@@ -906,6 +954,10 @@ PrefabInstance:
       propertyPath: mainMenu
       value: 
       objectReference: {fileID: 623727796462445000}
+    - target: {fileID: 4433683656575844685, guid: e9d05d267a399427990a1f88f133d759, type: 3}
+      propertyPath: trashBag
+      value: 
+      objectReference: {fileID: 9006951029991003672}
     - target: {fileID: 4433683656575844685, guid: e9d05d267a399427990a1f88f133d759, type: 3}
       propertyPath: trashbag
       value: 
@@ -1040,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39756d81d9a9425bb24f9c6b6f30d9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashbag: {fileID: 9006951029991003672}
+  trashBag: {fileID: 9006951029991003672}
 --- !u!1001 &6153149593323810466
 PrefabInstance:
   m_ObjectHideFlags: 0

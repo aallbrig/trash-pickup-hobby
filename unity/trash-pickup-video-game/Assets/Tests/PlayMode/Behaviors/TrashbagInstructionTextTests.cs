@@ -7,51 +7,51 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode.Behaviors
 {
-    public class TrashbagInstructionTextTest
+    public class TrashBagInstructionTextTest
     {
         [UnityTest]
-        public IEnumerator TrashbagInstructionsFadesAfterFirstTrashbagEmpty()
+        public IEnumerator TrashBagInstructionsFadesAfterFirstTrashBagEmpty()
         {
             var eventCalled = false;
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            var sut = new GameObject().AddComponent<TrashbagInstructionText>();
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            var sut = new GameObject().AddComponent<TrashBagInstructionText>();
+            sut.trashBag = testTrashBag;
             sut.InstructionsDismissedEvent += () => eventCalled = true;
             yield return null;
             
-            testTrashbag.Empty();
+            testTrashBag.Empty();
             
             Assert.IsTrue(eventCalled);
         }
         [UnityTest]
-        public IEnumerator TrashbagEmptyInstructionsAppearWhenTrashbagIsFull()
+        public IEnumerator TrashBagEmptyInstructionsAppearWhenTrashBagIsFull()
         {
             var eventCalled = false;
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            var sut = new GameObject().AddComponent<TrashbagInstructionText>();
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            var sut = new GameObject().AddComponent<TrashBagInstructionText>();
+            sut.trashBag = testTrashBag;
             sut.InstructionsActivatedEvent += () => eventCalled = true;
             yield return null;
             
-            testTrashbag.Add(new TestTrash());
-            testTrashbag.Empty();
+            testTrashBag.Add(new TestTrash());
+            testTrashBag.Empty();
             
             Assert.IsTrue(eventCalled);
         }
         [UnityTest]
-        public IEnumerator TrashbagEmptyInstructionTextOnlyAppearsBeforeFirstEmpty()
+        public IEnumerator TrashBagEmptyInstructionTextOnlyAppearsBeforeFirstEmpty()
         {
             var eventCallCount = 0;
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            var sut = new GameObject().AddComponent<TrashbagInstructionText>();
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            var sut = new GameObject().AddComponent<TrashBagInstructionText>();
+            sut.trashBag = testTrashBag;
             sut.InstructionsActivatedEvent += () => eventCallCount++;
             yield return null;
             
-            testTrashbag.Add(new TestTrash());
-            testTrashbag.Empty();
-            testTrashbag.Add(new TestTrash());
-            testTrashbag.Empty();
+            testTrashBag.Add(new TestTrash());
+            testTrashBag.Empty();
+            testTrashBag.Add(new TestTrash());
+            testTrashBag.Empty();
             
             Assert.AreEqual(1, eventCallCount);
         }

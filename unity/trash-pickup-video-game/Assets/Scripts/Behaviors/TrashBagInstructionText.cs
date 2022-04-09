@@ -5,25 +5,25 @@ using UnityEngine;
 
 namespace Behaviors
 {
-    public delegate void TrashbagInstructionTextActivated();
-    public delegate void TrashbagInstructionTextDismissed();
+    public delegate void TrashBagInstructionTextActivated();
+    public delegate void TrashBagInstructionTextDismissed();
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class TrashbagInstructionText : MonoBehaviour
+    public class TrashBagInstructionText : MonoBehaviour
     {
-        public TrashbagInstructionTextDismissed InstructionsDismissedEvent;
-        public TrashbagInstructionTextActivated InstructionsActivatedEvent;
-        public Trashbag trashbag;
+        public TrashBagInstructionTextDismissed InstructionsDismissedEvent;
+        public TrashBagInstructionTextActivated InstructionsActivatedEvent;
+        public TrashBag trashBag;
         private TextMeshProUGUI _text;
         private bool _firstTime = true;
 
         private void Start()
         {
-            trashbag ??= GetComponent<Trashbag>();
-            trashbag ??= FindObjectOfType<Trashbag>();
-            if (trashbag == null)
+            trashBag ??= GetComponent<TrashBag>();
+            trashBag ??= FindObjectOfType<TrashBag>();
+            if (trashBag == null)
             {
                 #if UNITY_EDITOR
-                Debug.LogError("Trashbag is required for this monobehaviour.");
+                Debug.LogError("TrashBag is required for this monobehaviour.");
                 #endif
                 return;
             }
@@ -32,10 +32,10 @@ namespace Behaviors
             // Setup expected initial text component state
             DismissText();
 
-            trashbag.TrashbagEmptyEvent += OnTrashbagEmpty;
-            trashbag.TrashbagFullEvent += OnTrashbagFull;
+            trashBag.TrashBagEmptyEvent += OnTrashBagEmpty;
+            trashBag.TrashBagFullEvent += OnTrashBagFull;
         }
-        private void OnTrashbagFull()
+        private void OnTrashBagFull()
         {
             if (_firstTime)
                 ActivateText();
@@ -46,7 +46,7 @@ namespace Behaviors
             InstructionsActivatedEvent?.Invoke();
         }
 
-        private void OnTrashbagEmpty(List<ITrash> emptiedtrash)
+        private void OnTrashBagEmpty(List<ITrash> emptiedtrash)
         {
             if (_firstTime)
             {

@@ -10,7 +10,7 @@ namespace Behaviors
     public class UserScore : MonoBehaviour
     {
         public MainMenu mainMenu;
-        public Trashbag trashbag;
+        public TrashBag trashBag;
         private TextMeshProUGUI _displayText;
 
         public float CurrentScore { get; private set; }
@@ -18,12 +18,12 @@ namespace Behaviors
         private void Start()
         {
             _displayText = GetComponent<TextMeshProUGUI>();
-            trashbag ??= FindObjectOfType<Trashbag>();
-            trashbag ??= new GameObject().AddComponent<Trashbag>();
+            trashBag ??= FindObjectOfType<TrashBag>();
+            trashBag ??= new GameObject().AddComponent<TrashBag>();
             mainMenu ??= FindObjectOfType<MainMenu>();
 
-            trashbag.TrashAddEvent += OnTrashAdd;
-            trashbag.TrashbagEmptyEvent += OnTrashbagEmpty;
+            trashBag.TrashAddEvent += OnTrashAdd;
+            trashBag.TrashBagEmptyEvent += OnTrashBagEmpty;
 
             if (mainMenu) mainMenu.PlayButtonPressedEvent += ResetScore;
 
@@ -41,7 +41,7 @@ namespace Behaviors
             SyncDisplayText();
         }
         private void SyncDisplayText() => _displayText.text = $"Score: {CurrentScore}";
-        private void OnTrashbagEmpty(List<ITrash> emptiedTrash)
+        private void OnTrashBagEmpty(List<ITrash> emptiedTrash)
         {
             CurrentScore +=
                 emptiedTrash.Select(trash => trash.Score).Aggregate((score1, score2) => score1 + score2);

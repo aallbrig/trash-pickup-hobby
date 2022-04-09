@@ -24,13 +24,13 @@ namespace Tests.PlayMode.Behaviors
         public IEnumerator ScoreAdditionsDisplaysScoreOnTrashAdd()
         {
             var sut = new GameObject().AddComponent<ScoreAdditions>();
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
             var text = "";
             sut.ScoreTextDisplayedEvent += displayText => text = displayText;
-            sut.trashbag = testTrashbag;
+            sut.trashBag = testTrashBag;
             yield return null;
 
-            testTrashbag.Add(new TestTrash(1f, 1f));
+            testTrashBag.Add(new TestTrash(1f, 1f));
 
             Assert.AreEqual("+ 1 points\n+ 1 weight", text);
         }
@@ -39,16 +39,16 @@ namespace Tests.PlayMode.Behaviors
         public IEnumerator ScoreAdditionsDisplaysScoreOnTrashEmpty()
         {
             var sut = new GameObject().AddComponent<ScoreAdditions>();
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
             var text = "";
             sut.ScoreTextDisplayedEvent += displayText => text = displayText;
-            sut.trashbag = testTrashbag;
+            sut.trashBag = testTrashBag;
             yield return null;
 
-            testTrashbag.Add(new TestTrash(0f, 1f));
-            testTrashbag.Add(new TestTrash(0f, 1f));
-            testTrashbag.Add(new TestTrash(0f, 1f));
-            testTrashbag.Empty();
+            testTrashBag.Add(new TestTrash(0f, 1f));
+            testTrashBag.Add(new TestTrash(0f, 1f));
+            testTrashBag.Add(new TestTrash(0f, 1f));
+            testTrashBag.Empty();
 
             Assert.AreEqual("+ 3 points", text);
         }

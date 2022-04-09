@@ -6,29 +6,29 @@ namespace Behaviors
     public class TrashBagFullnessMeter : MonoBehaviour
     {
         public Action MeterUiSyncedEvent;
-        public Trashbag trashbag;
+        public TrashBag trashBag;
         public RectTransform fillBarRectTransform;
         private void Start()
         {
-            trashbag ??= FindObjectOfType<Trashbag>();
+            trashBag ??= FindObjectOfType<TrashBag>();
             #if UNITY_EDITOR
-            if (trashbag == null) Debug.LogError("A trash bag is needed for this component");
+            if (trashBag == null) Debug.LogError("A trash bag is needed for this component");
             #endif
 
             // Default -- for mostly testing
             fillBarRectTransform ??= new GameObject { transform = { parent = transform } }.AddComponent<RectTransform>();
             SyncFullMeter();
 
-            if (trashbag)
+            if (trashBag)
             {
-                trashbag.TrashAddEvent += _ => SyncFullMeter();
-                trashbag.TrashbagEmptyEvent += _ => SyncFullMeter();
-                trashbag.TrashbagFullEvent += SyncFullMeter;
+                trashBag.TrashAddEvent += _ => SyncFullMeter();
+                trashBag.TrashBagEmptyEvent += _ => SyncFullMeter();
+                trashBag.TrashBagFullEvent += SyncFullMeter;
             }
         }
         private void SyncFullMeter()
         {
-            fillBarRectTransform.localScale = new Vector3(Mathf.Clamp(trashbag.FullPercentInDecimal(), 0f, 1f), 1, 1);
+            fillBarRectTransform.localScale = new Vector3(Mathf.Clamp(trashBag.FullPercentInDecimal(), 0f, 1f), 1, 1);
             MeterUiSyncedEvent?.Invoke();
         }
     }

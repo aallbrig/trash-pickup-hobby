@@ -396,7 +396,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &961438209 stripped
+--- !u!114 &1007559905 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9006951029991003672, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
   m_PrefabInstance: {fileID: 7200642904749443488}
@@ -416,6 +416,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: camera
+      value: 
+      objectReference: {fileID: 1634423470}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: injectedCamera
       value: 
       objectReference: {fileID: 1634423470}
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
@@ -919,6 +923,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1634423470}
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: injectedCamera
+      value: 
+      objectReference: {fileID: 1634423470}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: maximumUpwardVelocity
       value: 20
       objectReference: {fileID: 0}
@@ -1128,9 +1136,13 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 2426875214173535587, guid: 46838573283f041da87e728074cbcecc, type: 3}
+      propertyPath: trashBag
+      value: 
+      objectReference: {fileID: 1007559905}
+    - target: {fileID: 2426875214173535587, guid: 46838573283f041da87e728074cbcecc, type: 3}
       propertyPath: trashbag
       value: 
-      objectReference: {fileID: 961438209}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46838573283f041da87e728074cbcecc, type: 3}
 --- !u!1001 &6449690226053936895
@@ -1197,6 +1209,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1579662044294530362, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.799988
+      objectReference: {fileID: 0}
     - target: {fileID: 7200642904106491354, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
       propertyPath: m_Name
       value: User Interface
@@ -1271,6 +1287,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: camera
+      value: 
+      objectReference: {fileID: 1634423470}
+    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
+      propertyPath: injectedCamera
       value: 
       objectReference: {fileID: 1634423470}
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
@@ -1426,7 +1446,7 @@ PrefabInstance:
     - target: {fileID: 9073511603805671416, guid: 41b89bd0f2f2c4f3e80413965c3af36e, type: 3}
       propertyPath: trashBag
       value: 
-      objectReference: {fileID: 961438209}
+      objectReference: {fileID: 0}
     - target: {fileID: 9073511603805671416, guid: 41b89bd0f2f2c4f3e80413965c3af36e, type: 3}
       propertyPath: mainCamera
       value: 

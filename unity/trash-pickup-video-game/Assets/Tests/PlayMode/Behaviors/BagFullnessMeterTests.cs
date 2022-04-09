@@ -23,13 +23,13 @@ namespace Tests.PlayMode.Behaviors
         }
 
         [UnityTest]
-        public IEnumerator BagFullnessMeterUpdatesOnTrashbagAdd()
+        public IEnumerator BagFullnessMeterUpdatesOnTrashBagAdd()
         {
             var eventCalled = false;
             var eventCallCount = 0;
             var sut = new GameObject().AddComponent<TrashBagFullnessMeter>();
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            sut.trashBag = testTrashBag;
             sut.MeterUiSyncedEvent += () =>
             {
                 eventCalled = true;
@@ -37,7 +37,7 @@ namespace Tests.PlayMode.Behaviors
             };
             yield return null;
 
-            testTrashbag.Add(new TestTrash(1f));
+            testTrashBag.Add(new TestTrash(1f));
 
             Assert.IsTrue(eventCalled);
             // Event called two times -- one for start, one for adding trash
@@ -45,14 +45,14 @@ namespace Tests.PlayMode.Behaviors
         }
 
         [UnityTest]
-        public IEnumerator BagFullnessMeterUpdatesOnTrashbagFull()
+        public IEnumerator BagFullnessMeterUpdatesOnTrashBagFull()
         {
             var eventCalled = false;
             var eventCallCount = 0;
             var sut = new GameObject().AddComponent<TrashBagFullnessMeter>();
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            testTrashbag.trashbagCapacityInGallons = 1f;
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            testTrashBag.trashBagCapacityInGallons = 1f;
+            sut.trashBag = testTrashBag;
             sut.MeterUiSyncedEvent += () =>
             {
                 eventCalled = true;
@@ -60,7 +60,7 @@ namespace Tests.PlayMode.Behaviors
             };
             yield return null;
 
-            testTrashbag.Add(new TestTrash(1f));
+            testTrashBag.Add(new TestTrash(1f));
 
             Assert.IsTrue(eventCalled);
             // Event called three times -- one for start, one for adding trash, one for full
@@ -68,14 +68,14 @@ namespace Tests.PlayMode.Behaviors
         }
 
         [UnityTest]
-        public IEnumerator BagFullnessMeterUpdatesOnTrashbagEmpty()
+        public IEnumerator BagFullnessMeterUpdatesOnTrashBagEmpty()
         {
             var eventCalled = false;
             var eventCallCount = 0;
             var sut = new GameObject().AddComponent<TrashBagFullnessMeter>();
-            var testTrashbag = new GameObject().AddComponent<Trashbag>();
-            testTrashbag.trashbagCapacityInGallons = 1f;
-            sut.trashbag = testTrashbag;
+            var testTrashBag = new GameObject().AddComponent<TrashBag>();
+            testTrashBag.trashBagCapacityInGallons = 1f;
+            sut.trashBag = testTrashBag;
             sut.MeterUiSyncedEvent += () =>
             {
                 eventCalled = true;
@@ -83,8 +83,8 @@ namespace Tests.PlayMode.Behaviors
             };
             yield return null;
 
-            testTrashbag.Add(new TestTrash(1f));
-            testTrashbag.Empty();
+            testTrashBag.Add(new TestTrash(1f));
+            testTrashBag.Empty();
 
             Assert.IsTrue(eventCalled);
             // Event called four times -- one for start, one for adding trash, one for full, one for empty

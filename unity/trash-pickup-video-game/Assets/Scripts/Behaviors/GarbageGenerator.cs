@@ -10,7 +10,7 @@ namespace Behaviors
     // 😡 Curses to the apathy (or whatever it is) that lead people to litter
     public class GarbageGenerator : MonoBehaviour
     {
-        public Camera camera;
+        public Camera injectedCamera;
         public List<GameObject> trashPrefabs = new List<GameObject>();
 
         [Range(0f, 5f)] public float generatorPadding = 5f;
@@ -31,8 +31,8 @@ namespace Behaviors
 
         private void Start()
         {
-            camera ??= Camera.main;
-            if (camera == null)
+            injectedCamera ??= Camera.main;
+            if (injectedCamera == null)
             {
                 #if UNITY_EDITOR
                 Debug.LogError("A garbage generator needs a camera to know where to spawn garbage");
@@ -72,11 +72,11 @@ namespace Behaviors
         }
         private float DesiredSpawnX()
         {
-            var frustumHeight = 2.0f * DesiredDistance() * Mathf.Tan(camera.fieldOfView * 0.5f * Mathf.Deg2Rad);
-            var frustumWidth = frustumHeight * camera.aspect;
+            var frustumHeight = 2.0f * DesiredDistance() * Mathf.Tan(injectedCamera.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            var frustumWidth = frustumHeight * injectedCamera.aspect;
             var halfWidth = frustumWidth * 0.5f;
-            var lowerBound = (camera.transform.position.x - halfWidth) + generatorPadding;
-            var upperBound = (camera.transform.position.x + halfWidth) - generatorPadding;
+            var lowerBound = (injectedCamera.transform.position.x - halfWidth) + generatorPadding;
+            var upperBound = (injectedCamera.transform.position.x + halfWidth) - generatorPadding;
             return Random.Range(lowerBound, upperBound);
         }
         private float RandomUpwardForce() => Random.Range(minimumUpwardVelocity, maximumUpwardVelocity);
@@ -113,7 +113,7 @@ namespace Behaviors
         private float DesiredDistance()
         {
             // Desired distance = how far is garbage generator from the camera?
-            return Vector3.Distance(camera.transform.position, transform.position);
+            return Vector3.Distance(injectedCamera.transform.position, transform.position);
         }
         public void StartGeneration() => _generate = true;
         public void StopGeneration()

@@ -24,7 +24,7 @@ namespace Controllers
     public class PlayerController : MonoBehaviour
     {
         public Camera mainCamera;
-        public Trashbag trashBag;
+        public TrashBag trashBag;
         public float sampleTiming = 0.01f;
         [SerializeField] private Vector2 pointerBeginScreenInput;
         [SerializeField] private Vector2 pointerEndScreenInput;
@@ -63,8 +63,8 @@ namespace Controllers
             mainCamera ??= Camera.current;
             mainCamera ??= Camera.main;
 
-            trashBag ??= FindObjectOfType<Trashbag>();
-            trashBag ??= new GameObject().AddComponent<Trashbag>();
+            trashBag ??= FindObjectOfType<TrashBag>();
+            trashBag ??= new GameObject().AddComponent<TrashBag>();
 
             _controls.Gameplay.Interact.started += InteractionStarted;
             _controls.Gameplay.Interact.canceled += InteractionStopped;
@@ -128,14 +128,17 @@ namespace Controllers
             if (Physics.Raycast(ray, out var hit, 100f))
             {
                 var trash = hit.collider.transform.GetComponent<Behaviors.Trash>();
-                if (trash) PickupTrash(trash);
+                if (trash) TryPickupTrash(trash);
             }
         }
-        private void PickupTrash(Behaviors.Trash trash)
+        private void TryPickupTrash(Behaviors.Trash trash)
         {
-            trashBag.Add(trash.trashData);
-            PlayerTrashPickupEvent?.Invoke(trash.trashData);
-            trash.Reset();
+            if (trashBag.CanAddTrash())
+            {
+                trashBag.Add(trash.trashData);
+                PlayerTrashPickupEvent?.Invoke(trash.trashData);
+                trash.Reset();
+            }
         }
         private void InteractionStarted(InputAction.CallbackContext ctx)
         {
