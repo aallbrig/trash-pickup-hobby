@@ -122,8 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c862680f7209418089663022a0478abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashbag: {fileID: 0}
+  trashBag: {fileID: 0}
   fillBarRectTransform: {fileID: 2273474417463335013}
+  fillBarImage: {fileID: 1526944426525349174}
+  fillingColor: {r: 0.1976986, g: 1, b: 0, a: 1}
+  fullColor: {r: 1, g: 0.4825166, b: 0, a: 255}
 --- !u!1 &8255945893274209974
 GameObject:
   m_ObjectHideFlags: 0

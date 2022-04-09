@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Behaviors
 {
@@ -8,6 +9,9 @@ namespace Behaviors
         public Action MeterUiSyncedEvent;
         public TrashBag trashBag;
         public RectTransform fillBarRectTransform;
+        public RawImage fillBarImage;
+        public Color fillingColor = new Color(0.1976986f, 1, 0, 1);
+        public Color fullColor = new Color(1, 0.4825166f, 0, 255);
         private void Start()
         {
             trashBag ??= FindObjectOfType<TrashBag>();
@@ -24,6 +28,13 @@ namespace Behaviors
                 trashBag.TrashAddEvent += _ => SyncFullMeter();
                 trashBag.TrashBagEmptyEvent += _ => SyncFullMeter();
                 trashBag.TrashBagFullEvent += SyncFullMeter;
+            }
+
+            if (fillBarImage)
+            {
+                fillBarImage.color = fillingColor;
+                trashBag.TrashBagFullEvent += () => fillBarImage.color = fullColor;
+                trashBag.TrashBagEmptyEvent += _ => fillBarImage.color = fillingColor;
             }
         }
         private void SyncFullMeter()
