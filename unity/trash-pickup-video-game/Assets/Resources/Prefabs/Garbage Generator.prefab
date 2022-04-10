@@ -27,7 +27,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -5.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cf41879b264e9c9f221c211d07cab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  injectedCamera: {fileID: 0}
   trashPrefabs:
-  - {fileID: 9209120381563332268, guid: 742353377642449a2b92594d1664c82e, type: 3}
+  - {fileID: 4882851096427192786, guid: c4c4ec9351a27488ead83fff806b51f6, type: 3}
+  - {fileID: 1586658810664264752, guid: c68b91e5bba17494daa54a2883983037, type: 3}
+  - {fileID: 1475286503006959499, guid: 9be4631c3729a44eeb07ae1a8fe7d829, type: 3}
+  - {fileID: 7470891773298097917, guid: 4f136fff34fb54a3bbca444608b38962, type: 3}
+  - {fileID: 5095213361290051178, guid: e4ccac98e885c4c52822981efe779477, type: 3}
+  - {fileID: 7626351290819977351, guid: efed4e034137b475ba7834e3520d1ae3, type: 3}
+  - {fileID: 4706362295793942852, guid: 696d6fa2d51c74ee284b136ddede8c29, type: 3}
+  - {fileID: 2597854430874077437, guid: d1b14dbf1466c44b9afbb9256ef1e058, type: 3}
+  - {fileID: 2793890647419184410, guid: 9be2e17785e974ba3acc145dfbbdd37a, type: 3}
+  - {fileID: 4567555418160349549, guid: f8f4b945bf0734b3892b4f5c30eb87a5, type: 3}
+  - {fileID: 4281628324269749575, guid: 67c0885935c99472d866b5f5dc227500, type: 3}
+  - {fileID: 1420195947793395797, guid: 0d02207839aab4cf8ad883d51f666f04, type: 3}
+  generatorPadding: 5
   minimumSpawnTimeInSeconds: 0.5
   maximumSpawnTimeInSeconds: 1.5
+  minimumUpwardVelocity: 10
+  maximumUpwardVelocity: 10

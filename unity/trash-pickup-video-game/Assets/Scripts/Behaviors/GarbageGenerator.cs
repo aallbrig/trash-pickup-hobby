@@ -25,7 +25,7 @@ namespace Behaviors
         private readonly Dictionary<GameObject, List<Transform>>
             _objectPool = new Dictionary<GameObject, List<Transform>>(); // 💦
 
-        private readonly int _poolSize = 10;
+        private readonly int _poolSize = 3;
         public GarbageGenerated GarbageGeneratedEvent;
         private bool _generate;
 

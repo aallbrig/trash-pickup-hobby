@@ -399,41 +399,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 562800841}
     m_Modifications:
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1634423470}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: injectedCamera
       value: 
       objectReference: {fileID: 1634423470}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: maximumUpwardVelocity
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: minimumUpwardVelocity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: maximumSpawnTimeInSeconds
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: minimumSpawnTimeInSeconds
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2581898759871589098, guid: e069b2ca211be4769860927445d2c95d, type: 3}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 6461723829371082776, guid: 8fcd9d9216e754d72ab660c09f4551b3, type: 3}
     - target: {fileID: 7904572296504412434, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -907,41 +875,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 562800841}
     m_Modifications:
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1634423470}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: injectedCamera
       value: 
       objectReference: {fileID: 1634423470}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: maximumUpwardVelocity
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: minimumUpwardVelocity
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: maximumSpawnTimeInSeconds
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: minimumSpawnTimeInSeconds
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2581898759871589098, guid: e069b2ca211be4769860927445d2c95d, type: 3}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 6461723829371082776, guid: 8fcd9d9216e754d72ab660c09f4551b3, type: 3}
     - target: {fileID: 7904572296504412434, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1197,6 +1133,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 727844555649574405, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1579662044294530362, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 11.799988
@@ -1278,41 +1218,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 562800841}
     m_Modifications:
     - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1634423470}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: injectedCamera
       value: 
       objectReference: {fileID: 1634423470}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: maximumUpwardVelocity
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: minimumUpwardVelocity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: maximumSpawnTimeInSeconds
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: minimumSpawnTimeInSeconds
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2581898759871589098, guid: e069b2ca211be4769860927445d2c95d, type: 3}
-    - target: {fileID: 7904572296504412433, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
-      propertyPath: trashPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 6461723829371082776, guid: 8fcd9d9216e754d72ab660c09f4551b3, type: 3}
     - target: {fileID: 7904572296504412434, guid: 1ed8566595b754e7a9d0ecd58bb90527, type: 3}
       propertyPath: m_RootOrder
       value: 0
