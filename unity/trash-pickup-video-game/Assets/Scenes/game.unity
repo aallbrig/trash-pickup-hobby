@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e682b0bd48b4bd496701be83133b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: -10, z: 0}
-  endPosition: {x: 0, y: 10, z: 0}
+  startPosition: {x: 0, y: -10, z: 15}
+  endPosition: {x: 0, y: 10, z: 15}
   speedInSeconds: 45
   mainMenu: {fileID: 1704813399}
 --- !u!1001 &1270407568
@@ -1394,7 +1394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9045743112062508500, guid: 18c49bb2386554196bb3ab995f36f555, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 9045743112062508500, guid: 18c49bb2386554196bb3ab995f36f555, type: 3}
       propertyPath: m_LocalRotation.w
