@@ -71,5 +71,15 @@ describe("The landing page for the trash pickup hobby website", () => {
 
     // If no HTML element is found, page.$ returns null
     assert.notEqual(linkToAuthorWebsite, null);
-  })
+  });
+
+  it("Should display my current trash bag count", async () => {
+    const page = await browser.newPage();
+    await page.goto(LANDING_PAGE);
+
+    const linkToAuthorWebsite = await page.$('#trash-bag-count');
+
+    // If no HTML element is found, page.$ returns null
+    assert.notEqual(linkToAuthorWebsite, null);
+  });
 });
