@@ -13,6 +13,7 @@ namespace Behaviors
         public TrashBagInstructionTextDismissed InstructionsDismissedEvent;
         public TrashBagInstructionTextActivated InstructionsActivatedEvent;
         public TrashBag trashBag;
+        public bool onlyDisplayOnce = true;
         private TextMeshProUGUI _text;
         private bool _firstTime = true;
 
@@ -34,10 +35,17 @@ namespace Behaviors
 
             trashBag.TrashBagEmptyEvent += OnTrashBagEmpty;
             trashBag.TrashBagFullEvent += OnTrashBagFull;
+            trashBag.TrashBagHasResetEvent += () =>
+            {
+                if (onlyDisplayOnce) _firstTime = true;
+                DismissText();
+            };
         }
         private void OnTrashBagFull()
         {
-            if (_firstTime)
+            if (onlyDisplayOnce && _firstTime)
+                ActivateText();
+            else
                 ActivateText();
         }
         private void ActivateText()
@@ -46,13 +54,15 @@ namespace Behaviors
             InstructionsActivatedEvent?.Invoke();
         }
 
-        private void OnTrashBagEmpty(List<ITrash> emptiedtrash)
+        private void OnTrashBagEmpty(List<ITrash> emptiedTrash)
         {
-            if (_firstTime)
+            if (onlyDisplayOnce && _firstTime)
             {
                 DismissText();
                 _firstTime = false;
             }
+            else
+                DismissText();
         }
 
         private void DismissText()

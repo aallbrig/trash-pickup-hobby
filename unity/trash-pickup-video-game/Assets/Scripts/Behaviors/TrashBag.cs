@@ -12,6 +12,7 @@ namespace Behaviors
     public delegate void TrashBagFilledFull();
 
     public delegate void TrashBagEmptied(List<ITrash> emptiedTrash);
+    public delegate void TrashBagHasReset();
 
     [RequireComponent(typeof(RawImage))]
     public class TrashBag : MonoBehaviour
@@ -57,7 +58,6 @@ namespace Behaviors
             _buttonTexture2d = GetComponent<RawImage>();
             impulseSource ??= GetComponent<CinemachineImpulseSource>();
             mainMenu ??= FindObjectOfType<MainMenu>();
-            SyncTrashBagImage();
 
             if (mainMenu) mainMenu.PlayButtonPressedEvent += ResetTrashBag;
             TrashBagFullEvent += () =>
@@ -82,11 +82,13 @@ namespace Behaviors
         public event TrashBagFilledFull TrashBagFullEvent;
 
         public event TrashBagEmptied TrashBagEmptyEvent;
+        public event TrashBagHasReset TrashBagHasResetEvent;
 
         private void ResetTrashBag()
         {
             _currentTrash.Clear();
             SyncTrashBagImage();
+            TrashBagHasResetEvent?.Invoke();
         }
         public void Add(ITrash trash)
         {
@@ -101,7 +103,7 @@ namespace Behaviors
             }
         }
         // Ignore if the trash will set the capacity over 100%
-        public bool CanAddTrash() => FullPercentInDecimal() < 1.0f;
+        public bool CanAddTrash() => FullPercentInDecimal() < 1.5f;
         private void TriggerScreenShake()
         {
             if (impulseSource) impulseSource.GenerateImpulse();
