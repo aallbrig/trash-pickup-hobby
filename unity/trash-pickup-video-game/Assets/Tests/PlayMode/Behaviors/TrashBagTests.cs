@@ -56,6 +56,7 @@ namespace Tests.PlayMode.Behaviors
         {
             var sut = new GameObject().AddComponent<TrashBag>();
             sut.trashBagCapacityInGallons = 1f;
+            sut.disableAddAfterThisDecimalPercent = 1.0f;
             var callCount = 0;
             sut.TrashAddEvent += _ => callCount++;
             yield return null;

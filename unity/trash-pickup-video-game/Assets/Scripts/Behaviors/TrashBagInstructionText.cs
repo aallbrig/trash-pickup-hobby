@@ -43,8 +43,11 @@ namespace Behaviors
         }
         private void OnTrashBagFull()
         {
-            if (onlyDisplayOnce && _firstTime)
-                ActivateText();
+            if (onlyDisplayOnce)
+            {
+                if (_firstTime)
+                    ActivateText();
+            }
             else
                 ActivateText();
         }
@@ -57,12 +60,8 @@ namespace Behaviors
         private void OnTrashBagEmpty(List<ITrash> emptiedTrash)
         {
             if (onlyDisplayOnce && _firstTime)
-            {
-                DismissText();
                 _firstTime = false;
-            }
-            else
-                DismissText();
+            DismissText();
         }
 
         private void DismissText()

@@ -17,6 +17,7 @@ namespace Behaviors
     [RequireComponent(typeof(RawImage))]
     public class TrashBag : MonoBehaviour
     {
+        public float disableAddAfterThisDecimalPercent = 1.5f;
         public Texture2D trashBagEmpty;
         public Texture2D trashBag25PercentFull;
         public Texture2D trashBag50PercentFull;
@@ -103,7 +104,7 @@ namespace Behaviors
             }
         }
         // Ignore if the trash will set the capacity over 100%
-        public bool CanAddTrash() => FullPercentInDecimal() < 1.5f;
+        public bool CanAddTrash() => FullPercentInDecimal() < disableAddAfterThisDecimalPercent;
         private void TriggerScreenShake()
         {
             if (impulseSource) impulseSource.GenerateImpulse();
@@ -113,7 +114,8 @@ namespace Behaviors
             if (_currentTrash.Count <= 0) return;
 
             var trashCopy = _currentTrash.Select(_ => _).ToList();
-            ResetTrashBag();
+            _currentTrash.Clear();
+            SyncTrashBagImage();
             TrashBagEmptyEvent?.Invoke(trashCopy);
         }
         public float FullPercentInDecimal() => TrashBagCurrentCapacity == 0f ? 0f : TrashBagCurrentCapacity / trashBagCapacityInGallons;

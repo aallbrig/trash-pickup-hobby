@@ -1158,10 +1158,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1579662044294530362, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 11.799988
-      objectReference: {fileID: 0}
     - target: {fileID: 7200642904106491354, guid: 64d9060837a0c40fb98121c0a0615589, type: 3}
       propertyPath: m_Name
       value: User Interface
