@@ -14,6 +14,7 @@ describe("The landing page for the trash pickup hobby website", () => {
       args: ['--disable-dev-shm-usage']
     });
   });
+
   after(async () => {
     await browser.close();
   });
@@ -77,9 +78,19 @@ describe("The landing page for the trash pickup hobby website", () => {
     const page = await browser.newPage();
     await page.goto(LANDING_PAGE);
 
-    const linkToAuthorWebsite = await page.$('#trash-bag-count');
+    const trashBagCount = await page.$('#trash-bag-count');
 
     // If no HTML element is found, page.$ returns null
-    assert.notEqual(linkToAuthorWebsite, null);
+    assert.notEqual(trashBagCount, null);
+  });
+
+  it("Should display my current 'thank you!' count", async () => {
+    const page = await browser.newPage();
+    await page.goto(LANDING_PAGE);
+
+    const thankYouCount = await page.$('#thank-you-count');
+
+    // If no HTML element is found, page.$ returns null
+    assert.notEqual(thankYouCount, null);
   });
 });
