@@ -93,4 +93,14 @@ describe("The landing page for the trash pickup hobby website", () => {
     // If no HTML element is found, page.$ returns null
     assert.notEqual(thankYouCount, null);
   });
+
+  it("Should allow users to be able to donate (if they want)", async () => {
+    const page = await browser.newPage();
+    await page.goto(LANDING_PAGE);
+
+    const donation = await page.$('#donate');
+
+    // If no HTML element is found, page.$ returns null
+    assert.notEqual(donation, null);
+  });
 });
